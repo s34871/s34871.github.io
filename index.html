@@ -52,8 +52,33 @@
         }
 
         .main-container { max-width: 800px; z-index: 10; position: relative; padding: 20px; display: flex; flex-direction: column; align-items: center; }
-        .crown-logo { font-size: 3rem; color: var(--gold-primary); margin-bottom: 10px; animation: pulse 2.5s infinite; }
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); filter: drop-shadow(0 0 15px rgba(212,175,55,0.7)); } }
+        
+        /* ✨ กรอบรูปสง่าๆ สไตล์ Miss Universe (Royal Golden Frame) */
+        .profile-frame {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            margin-bottom: 20px;
+            border-radius: 50%;
+            padding: 6px; /* ระยะห่างของกรอบทอง */
+            background: var(--gold-gradient);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.6);
+            animation: float 4s ease-in-out infinite;
+        }
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #fff; /* ขอบขาวตัดด้านในเพิ่มความพรีเมียม */
+            background-color: #eee;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); filter: drop-shadow(0 5px 15px rgba(212, 175, 55, 0.3)); }
+            50% { transform: translateY(-8px); filter: drop-shadow(0 15px 25px rgba(212, 175, 55, 0.5)); }
+        }
+
+        .crown-logo { font-size: 2.2rem; color: var(--gold-primary); margin-bottom: 5px; }
         
         h1 { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.3rem; font-weight: 700; margin-bottom: 5px; margin-top: 0; }
         .subtitle { color: #aa771c; font-size: 1.1rem; letter-spacing: 2px; margin-bottom: 25px; font-weight: 600; }
@@ -98,11 +123,17 @@
 
     <div class="spotlight"></div>
     <div class="main-container">
+        <!-- 📸 โซนรูปภาพโปรไฟล์พร้อมกรอบสีทองอร่าม -->
+        <div class="profile-frame">
+            <!-- ⚠️ คำแนะนำ: ให้เปลี่ยนลิงก์รูปภาพตรง src="..." เป็นลิงก์รูปภาพโปรไฟล์ของคุณอดิศรเองนะครับ เช่น "profile.jpg" -->
+            <img src="https://unsplash.com" alt="อดิศร ทวีโชคสิริกุล" class="profile-img">
+        </div>
+
         <div class="crown-logo">✦ 👑 ✦</div>
         <h1>อดิศร (Adisorn)</h1>
         <div class="subtitle">ห้องเรียนพิเศษ Gifted Portfolio</div>
         
-        <!-- กล่องข้อความที่เพิ่มเข้ามาใหม่ -->
+        <!-- กล่องข้อความวัตถุประสงค์ -->
         <div class="info-card">
             ✦ แฟ้มสะสมผลงานนี้จัดทำขึ้นเพื่อสะสมผลงานของ <strong>อดิศร ทวีโชคสิริกุล</strong> เพื่อใช้สมัครศึกษาต่อ ✦
         </div>
