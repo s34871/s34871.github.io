@@ -15,7 +15,7 @@
         }
         body {
             background-color: var(--bg-color); color: var(--text-dark); text-align: center;
-            padding: 120px 20px 50px 20px; font-family: 'Cinzel', 'Playfair Display', sans-serif; margin: 0;
+            padding: 140px 20px 50px 20px; font-family: 'Cinzel', 'Playfair Display', sans-serif; margin: 0;
             min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
             position: relative; overflow-x: hidden;
         }
@@ -51,13 +51,22 @@
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
 
-        .main-container { max-width: 800px; z-index: 10; position: relative; padding: 20px; }
+        .main-container { max-width: 800px; z-index: 10; position: relative; padding: 20px; display: flex; flex-direction: column; align-items: center; }
         .crown-logo { font-size: 3rem; color: var(--gold-primary); margin-bottom: 10px; animation: pulse 2.5s infinite; }
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); filter: drop-shadow(0 0 15px rgba(212,175,55,0.7)); } }
         
-        h1 { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.3rem; font-weight: 700; margin-bottom: 5px; }
-        .subtitle { color: #aa771c; font-size: 1.1rem; letter-spacing: 2px; margin-bottom: 40px; font-weight: 600; }
+        h1 { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.3rem; font-weight: 700; margin-bottom: 5px; margin-top: 0; }
+        .subtitle { color: #aa771c; font-size: 1.1rem; letter-spacing: 2px; margin-bottom: 25px; font-weight: 600; }
         
+        /* ✨ กล่องข้อความวัตถุประสงค์ (Objective Card) */
+        .info-card {
+            background: var(--card-bg); border: var(--border-gold); border-radius: 15px;
+            padding: 20px 30px; max-width: 650px; margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.06); backdrop-filter: blur(8px);
+            font-size: 1.05rem; line-height: 1.6; color: #333;
+        }
+        .info-card strong { color: #aa771c; }
+
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; width: 100%; max-width: 750px; }
         .menu-btn {
             background: var(--card-bg); border: var(--border-gold); border-radius: 50px; padding: 20px;
@@ -93,6 +102,11 @@
         <h1>อดิศร (Adisorn)</h1>
         <div class="subtitle">ห้องเรียนพิเศษ Gifted Portfolio</div>
         
+        <!-- กล่องข้อความที่เพิ่มเข้ามาใหม่ -->
+        <div class="info-card">
+            ✦ แฟ้มสะสมผลงานนี้จัดทำขึ้นเพื่อสะสมผลงานของ <strong>อดิศร ทวีโชคสิริกุล</strong> เพื่อใช้สมัครศึกษาต่อ ✦
+        </div>
+
         <div class="menu-grid">
             <a href="about.html" class="menu-btn"><span>👑 ประวัติส่วนตัว</span> <span class="arrow">⟶</span></a>
             <a href="education.html" class="menu-btn"><span>🎓 ประวัติการศึกษา</span> <span class="arrow">⟶</span></a>
