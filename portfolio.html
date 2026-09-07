@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Universe Portfolio</title>
+    <title>ประวัติและผลงาน - อดิศร (Adisorn)</title>
     <style>
         :root {
-            --bg-color: #faf9f6; /* ขาวออฟไวท์หรูหรา */
+            --bg-color: #faf9f6; /* สีขาวออฟไวท์หรูหรา */
             --text-dark: #1a1a1a;
             --gold-primary: #d4af37; /* ทองเมทัลลิก */
-            --gold-light: #f3e5ab;
             --gold-gradient: linear-gradient(135deg, #b38728, #fbf5b7, #daa520, #fbf5b7, #aa771c);
-            --card-bg: rgba(255, 255, 255, 0.9);
-            --border-gold: 1px solid rgba(212, 175, 55, 0.3);
+            --card-bg: rgba(255, 255, 255, 0.96);
+            --border-gold: 1px solid rgba(212, 175, 55, 0.35);
         }
         
         body {
@@ -21,12 +20,12 @@
             color: var(--text-dark);
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+            line-height: 1.8;
             overflow-x: hidden;
             position: relative;
         }
 
-        /* เอฟเฟกต์แสงไฟระยิบระยับ (Sparkling Lights Background) */
+        /* เอฟเฟกต์ลายเพชรชุดราตรีเข้มชัดเจนเบื้องหลัง */
         body::before {
             content: '';
             position: absolute;
@@ -34,21 +33,52 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                radial-gradient(circle, #fff 10%, transparent 20%),
-                radial-gradient(circle, rgba(255,245,183,0.8) 15%, transparent 25%),
-                radial-gradient(circle, #fff 10%, transparent 20%);
-            background-size: 400px 400px, 500px 500px, 300px 300px;
-            background-position: 0 0, 40px 160px, 130px 270px;
-            animation: sparkle 20s linear infinite;
-            opacity: 0.4;
+            background: 
+                radial-gradient(circle, #fff 15%, transparent 25%) 0 0 / 350px 350px,
+                radial-gradient(circle, rgba(255,241,143,0.9) 18%, transparent 28%) 50px 150px / 450px 450px,
+                linear-gradient(115deg, rgba(212,175,55,0.12) 25%, transparent 25%) 0 0 / 40px 70px,
+                linear-gradient(245deg, rgba(212,175,55,0.12) 25%, transparent 25%) 0 0 / 40px 70px,
+                linear-gradient(115deg, rgba(212,175,55,0.12) 25%, transparent 25%) 20px 35px / 40px 70px,
+                linear-gradient(245deg, rgba(212,175,55,0.12) 25%, transparent 25%) 20px 35px / 40px 70px;
+            animation: bgMove 25s linear infinite;
+            opacity: 0.95;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        @keyframes bgMove {
+            0% { background-position: 0 0, 50px 150px, 0 0, 0 0, 20px 35px, 20px 35px; }
+            100% { background-position: 350px 350px, 500px 600px, 40px 70px, 40px 70px, 60px 105px, 60px 105px; }
+        }
+
+        /* แสงแฟลชสปอตไลท์ส่องสว่าง */
+        .spotlight {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center top, rgba(255,255,255,0.95) 0%, rgba(250,249,246,0) 60%);
             z-index: -1;
             pointer-events: none;
         }
 
-        @keyframes sparkle {
-            0% { background-position: 0 0, 40px 160px, 130px 270px; }
-            100% { background-position: 400px 400px, 540px 660px, 430px 570px; }
+        /* ละอองดาวหิมะตก */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(212,175,55,0.8) 50%, transparent 100%);
+            border-radius: 50%;
+            z-index: 1;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(105vh); opacity: 0; }
         }
 
         header {
@@ -57,7 +87,7 @@
             border-image: var(--gold-gradient) 1;
             padding: 4rem 1rem;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.05);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.08);
         }
 
         .profile-container {
@@ -65,7 +95,6 @@
             display: inline-block;
         }
 
-        /* แสงออร่ารอบรูปโปรไฟล์ */
         .profile-img {
             width: 140px;
             height: 140px;
@@ -89,150 +118,114 @@
         }
 
         .subtitle {
-            color: var(--text-dark);
+            color: #aa771c;
             font-size: 1.1rem;
             letter-spacing: 3px;
             text-transform: uppercase;
             margin-bottom: 1.5rem;
-            font-weight: 300;
-        }
-
-        .social-links a {
-            color: var(--text-dark);
-            text-decoration: none;
-            margin: 0 15px;
             font-weight: 600;
-            letter-spacing: 1px;
-            transition: color 0.3s;
-            border-bottom: 1px solid transparent;
-        }
-
-        .social-links a:hover {
-            color: #b38728;
-            border-bottom: 1px solid #b38728;
         }
 
         main {
-            max-width: 950px;
+            max-width: 900px;
             margin: 3rem auto;
             padding: 0 1.5rem;
+            position: relative;
+            z-index: 10;
         }
 
         section {
-            margin-bottom: 4rem;
+            background-color: var(--card-bg);
+            border: var(--border-gold);
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.06);
+            backdrop-filter: blur(8px);
+            transition: all 0.3s ease;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.15);
+            border-color: rgba(212, 175, 55, 0.6);
         }
 
         h2 {
-            text-align: center;
-            font-size: 1.8rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 2rem;
-            position: relative;
+            font-size: 1.6rem;
+            letter-spacing: 1px;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
             color: #aa771c;
+            border-bottom: 2px solid transparent;
+            border-image: var(--gold-gradient) 1;
+            padding-bottom: 0.5rem;
+            display: inline-block;
         }
 
-        /* เส้นใต้หรูหราแบบมีประกายตรงกลาง */
-        h2::after {
+        /* ตกแต่งลิสต์รายการข้อมูล */
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 12px;
+            font-size: 1.05rem;
+        }
+
+        ul li::before {
             content: '✦';
-            display: block;
-            font-size: 1rem;
+            position: absolute;
+            left: 0;
             color: var(--gold-primary);
-            margin-top: 0.5rem;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-            gap: 2rem;
-            margin-top: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
         }
 
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid rgba(212, 175, 55, 0.2);
+        .sub-card {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(212, 175, 55, 0.15);
             border-radius: 8px;
-            padding: 2rem;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.02);
-            transition: all 0.4s ease;
-            backdrop-filter: blur(5px);
+            padding: 1.5rem;
+            transition: all 0.3s;
         }
 
-        .card:hover {
-            transform: translateY(-8px);
+        .sub-card:hover {
             border-color: var(--gold-primary);
-            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.15);
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.1);
         }
 
-        .card h3 {
+        .sub-card h3 {
             margin-top: 0;
-            margin-bottom: 0.75rem;
-            font-size: 1.3rem;
+            color: #1a1a1a;
+            font-size: 1.15rem;
         }
 
-        .card h3 a {
-            color: var(--text-dark);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .card h3 a:hover {
-            color: var(--gold-primary);
-        }
-
-        .card p {
-            color: #555;
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .tags {
+        .tag-container {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
+            margin-top: 1rem;
         }
 
-        .tag {
+        .tag-badge {
             background: linear-gradient(135deg, rgba(251,245,119,0.15), rgba(212,175,55,0.15));
             color: #aa771c;
             border: 1px solid rgba(212, 175, 55, 0.3);
             padding: 0.3rem 0.8rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
             font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        .skills-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .skill-badge {
-            background-color: white;
-            border: 1px solid rgba(212, 175, 55, 0.25);
-            padding: 0.6rem 1.5rem;
-            border-radius: 30px;
-            font-weight: 500;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.02);
-            transition: all 0.3s;
-        }
-
-        .skill-badge:hover {
-            background: var(--gold-gradient);
-            color: white;
-            border-color: transparent;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
-        }
-
-        #about p {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto;
-            font-size: 1.1rem;
-            color: #444;
         }
 
         footer {
@@ -245,67 +238,58 @@
             letter-spacing: 1px;
         }
     </style>
-    <!-- โหลดฟอนต์แนวหรูหรามาใช้งาน -->
     <link href="https://googleapis.com" rel="stylesheet">
 </head>
 <body>
 
+    <div class="spotlight"></div>
+
     <header>
         <div class="profile-container">
-            <!-- เปลี่ยน URL รูปภาพมงกุฎหรือรูปของคุณตรงนี้ -->
-            <img src="https://unsplash.com" alt="Your Portrait" class="profile-img">
+            <!-- สามารถใส่ URL รูปภาพโปรไฟล์ของคุณตรงนี้ได้ครับ -->
+            <img src="https://unsplash.com" alt="Adisorn Profile" class="profile-img">
         </div>
-        <h1>Confidently Beautiful</h1>
-        <p class="subtitle">Your Name &bull; Portfolio</p>
-        <div class="social-links">
-            <a href="#" target="_blank">GitHub</a>
-            <a href="#" target="_blank">LinkedIn</a>
-            <a href="#">Contact</a>
-        </div>
+        <h1>อดิศร (Adisorn)</h1>
+        <p class="subtitle">ห้องเรียนพิเศษ Gifted Portfolio</p>
     </header>
 
     <main>
+        <!-- 1. ประวัติส่วนตัว -->
         <section id="about">
-            <h2>The Journey</h2>
-            <p>"ความงดงามที่แท้จริงคือความมั่นใจและศักยภาพ" ยินดีต้อนรับสู่พอร์ตโฟลิโอของฉัน ที่ซึ่งความตั้งใจ เทคโนโลยี และความคิดสร้างสรรค์มาบรรจบกันเพื่อสร้างสรรค์ผลงานอันทรงคุณค่า</p>
+            <h2>👑 ประวัติส่วนตัว</h2>
+            <ul>
+                <li><strong>ชื่อ-นามสกุล:</strong> นายอดิศร (ใส่ชื่อจริงและนามสกุลตรงนี้)</li>
+                <li><strong>ชื่อเล่น:</strong> (ใส่ชื่อเล่นตรงนี้)</li>
+                <li><strong>ความสามารถพิเศษ:</strong> (เช่น การคำนวณ, คอมพิวเตอร์, การวิเคราะห์เชิงตรรกะ)</li>
+                <li><strong>คติพจน์ประจำใจ:</strong> "Confidently Beautiful with Brains - ความมุ่งมั่นพัฒนาตนเองคือจุดเริ่มต้นของความสำเร็จ"</li>
+            </ul>
         </section>
 
-        <section id="projects">
-            <h2>Masterpieces</h2>
+        <!-- 2. ประวัติการศึกษา -->
+        <section id="education">
+            <h2>🎓 ประวัติการศึกษา</h2>
+            <ul>
+                <li><strong>มัธยมศึกษาตอนปลาย:</strong> แผนการเรียนห้องเรียนพิเศษวิทยาศาสตร์และคณิตศาสตร์ (Gifted Program)</li>
+                <li><strong>มัธยมศึกษาตอนต้น:</strong> (ใส่ชื่อโรงเรียนและเกรดเฉลี่ยสะสมหากต้องการ)</li>
+                <li><strong>ประถมศึกษา:</strong> (ใส่ชื่อโรงเรียนประถมศึกษา)</li>
+            </ul>
+        </section>
+
+        <!-- 3. กิจกรรมและผลงาน -->
+        <section id="activities">
+            <h2>✨ กิจกรรมและผลงาน</h2>
             <div class="grid">
-                <!-- โปรเจกต์ที่ 1 -->
-                <div class="card">
-                    <h3><a href="#" target="_blank">👑 Project Golden Crown</a></h3>
-                    <p>ระบบบริหารจัดการและจัดการข้อมูลแอปพลิเคชันระดับพรีเมียม ตอบโจทย์การใช้งานที่ลื่นไหลและการแสดงผลที่งดงาม</p>
-                    <div class="tags">
-                        <span class="tag">NEXT.JS</span>
-                        <span class="tag">TAILWIND</span>
-                        <span class="tag">SUPABASE</span>
-                    </div>
+                <div class="sub-card">
+                    <h3>🏆 ผลงานเด่นชิ้นที่ 1</h3>
+                    <p>รายละเอียดเกี่ยวกับการแข่งขัน โครงงานวิทยาศาสตร์ หรือรางวัลที่เคยได้รับในฐานะนักเรียนห้อง Gifted</p>
                 </div>
-
-                <!-- โปรเจกต์ที่ 2 -->
-                <div class="card">
-                    <h3><a href="#" target="_blank">✨ Universe Analytics</a></h3>
-                    <p>แพลตฟอร์มวิเคราะห์ข้อมูลเชิงลึกที่มาพร้อม Dashboard สรุปผลความงามของตัวเลขและสถิติอย่างแม่นยำ</p>
-                    <div class="tags">
-                        <span class="tag">PYTHON</span>
-                        <span class="tag">REACT</span>
-                        <span class="tag">D3.JS</span>
-                    </div>
+                <div class="sub-card">
+                    <h3>👥 กิจกรรมภายนอก/ภายใน</h3>
+                    <p>กิจกรรมค่ายวิชาการ กิจกรรมเพื่อสังคม หรือหน้าที่ในโรงเรียน เช่น คณะกรรมการ สภานักเรียน</p>
                 </div>
             </div>
         </section>
 
-        <section id="skills">
-            <h2>Core Expertise</h2>
-            <div class="skills-container">
-                <div class="skill-badge">Branding & Design</div>
-                <div class="skill-badge">Frontend Development</div>
-                <div class="skill-badge">Creative Directing</div>
-                <div class="skill-badge">Public Speaking</div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
+        <!-- 4. ความสนใจศึกษาต่อ -->
+        <section id="future">
+            <h2>✦ ความสนใจศึกษาต่อ</h2>
