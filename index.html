@@ -9,7 +9,7 @@
         /* ตั้งค่าพื้นหลังธีมอวกาศและทางช้างเผือกแบบมีมิติ */
         body {
             background: #020105 radial-gradient(circle at 50% 50%, #161224 0%, #05020a 80%, #000000 100%);
-            color: #f4edd9;
+            color: #2c2518; /* ปรับสีตัวอักษรทั่วไปให้เข้มขึ้นเพื่อให้เข้ากับการ์ดสีสว่าง */
             font-family: 'Cinzel', 'Playfair Display', 'Segoe UI', serif;
             display: flex;
             justify-content: center;
@@ -32,7 +32,6 @@
             height: 100%;
             z-index: 0;
             opacity: 0.6;
-            /* ใช้เงาหลายจุดจำลองเป็นดวงดาวขนาดเล็ก 1px และ 2px ในอวกาศ */
             box-shadow: 
                 10vw 20vh #fff, 25vw 12vh #fff, 85vw 15vh #fff, 70vw 25vh #fff,
                 40vw 35vh #fff, 15vw 55vh #fff, 80vw 60vh #fff, 92vw 45vh #fff,
@@ -55,14 +54,48 @@
                 38vw 50vh #fff, 68vw 18vh #fff, 3vw 68vh #fff, 48vw 82vh #ffd700;
         }
 
-        /* --- ส่วนของประกายดาวสีทองวิ้งๆ ด้านหน้า (Glittering Gold Sparkles) --- */
+        /* --- เอฟเฟกต์ไฟสปอตไลท์เวทีประกวด (Stage Spotlights) --- */
+        .spotlight-left, .spotlight-right {
+            position: absolute;
+            bottom: -5%;
+            width: 40vw;
+            height: 110vh;
+            background: radiating-gradient;
+            /* ไล่เฉดสีจากสีขาวทองโปร่งแสงไปจนถึงโปร่งใส */
+            background: linear-gradient(0deg, rgba(255, 235, 170, 0.25) 0%, rgba(255, 255, 255, 0.05) 60%, rgba(255, 255, 255, 0) 100%);
+            clip-path: polygon(45% 100%, 55% 100%, 100% 0%, 0% 0%); /* ตัดรูปทรงให้เป็นลำแสงสามเหลี่ยม */
+            z-index: 1;
+            pointer-events: none;
+            transform-origin: bottom center;
+        }
+        .spotlight-left {
+            left: 10%;
+            transform: rotate(25deg);
+            animation: swingLeft 7s infinite ease-in-out;
+        }
+        .spotlight-right {
+            right: 10%;
+            transform: rotate(-25deg);
+            animation: swingRight 7s infinite ease-in-out;
+        }
+
+        @keyframes swingLeft {
+            0%, 100% { transform: rotate(20deg); }
+            50% { transform: rotate(35deg); }
+        }
+        @keyframes swingRight {
+            0%, 100% { transform: rotate(-20deg); }
+            50% { transform: rotate(-35deg); }
+        }
+
+        /* --- ส่วนของประกายดาวสีทองวิ้งๆ (Glittering Gold Sparkles) --- */
         .sparkles {
             position: absolute;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: 0;
+            z-index: 1;
             pointer-events: none;
         }
 
@@ -74,7 +107,6 @@
             opacity: 0;
         }
 
-        /* ตำแหน่งของละอองดาวรอบๆ */
         .sparkle:nth-child(1) { top: 15%; left: 10%; font-size: 20px; animation-delay: 0s; }
         .sparkle:nth-child(2) { top: 22%; left: 82%; font-size: 28px; animation-delay: 0.7s; }
         .sparkle:nth-child(3) { top: 70%; left: 15%; font-size: 24px; animation-delay: 1.4s; }
@@ -97,31 +129,32 @@
             }
         }
 
-        /* --- การ์ดประกวดสุดพรีเมียม (The Universe Card) --- */
+        /* --- การ์ดประกวดสีสว่างหรูหรา (The Bright Luxury Card) --- */
         .card {
-            background: rgba(10, 7, 16, 0.75);
-            backdrop-filter: blur(12px);
+            background: rgba(255, 254, 250, 0.88); /* สีขาวงาช้างสว่างแบบโปร่งแสง */
+            backdrop-filter: blur(16px);
             border-radius: 16px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 30px rgba(212, 175, 55, 0.15);
+            /* เพิ่มมิติเงามืดด้านล่างและออร่าแสงสีทองเรืองรองรอบตัวการ์ด */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 35px rgba(255, 223, 128, 0.25);
             max-width: 500px; 
             width: 100%;
             padding: 50px 40px;
             text-align: center;
-            border: 1px solid rgba(212, 175, 55, 0.4); /* ขอบทองบางเฉียบหรูหรา */
+            border: 2px solid rgba(212, 175, 55, 0.6); /* ขอบสีทองคำพรีเมียม */
             transition: all 0.4s ease;
             position: relative;
-            z-index: 1;
+            z-index: 2; /* ให้อยู่เหนือสปอตไลท์ */
         }
 
         .card:hover {
             transform: translateY(-8px);
-            border-color: rgba(255, 215, 0, 0.8);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.3);
+            border-color: rgba(255, 215, 0, 1);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5), 0 0 45px rgba(255, 215, 0, 0.4);
         }
 
-        /* หัวข้อหลักมงกุฎแห่งจักรวาล */
+        /* หัวข้อหลักไล่เฉดสีทองเด่นชัดบนการ์ดสีขาว */
         h1 { 
-            background: linear-gradient(135deg, #FFE8A3 0%, #C59B27 50%, #B38728 100%);
+            background: linear-gradient(135deg, #B38728 0%, #8A640F 50%, #61460B 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-size: 28px;
@@ -130,49 +163,55 @@
             text-transform: uppercase;
         }
 
-        /* ข้อความเนื้อหา */
+        /* ข้อความเนื้อหาปรับเป็นสีเทาเข้มพรีเมียม */
         p { 
             font-size: 16px; 
             line-height: 1.8;
             margin: 15px 0;
-            color: #e0d9c5;
+            color: #4a4235;
         }
 
         /* ไฮไลต์ชื่อตัวหนา */
         strong {
-            color: #FFF;
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+            color: #1a150c;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.15), transparent);
             padding: 4px 12px;
-            border-bottom: 1px solid #D4AF37;
+            border-bottom: 1.5px solid #C59B27;
             letter-spacing: 1px;
         }
 
-        /* ปุ่ม Next Stage สไตล์มงลง */
+        /* ปุ่ม Next Stage สไตล์มงลงทรงพลัง */
         .btn {
             display: inline-block;
             margin-top: 35px;
             padding: 14px 45px;
             background: linear-gradient(135deg, #FFE8A3, #C59B27);
-            color: #09070f;
+            color: #ffffff;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
             text-decoration: none;
             border-radius: 4px; 
             font-weight: 700;
             font-size: 15px;
             letter-spacing: 2px;
             text-transform: uppercase;
-            box-shadow: 0 4px 20px rgba(197, 155, 39, 0.3);
+            box-shadow: 0 4px 20px rgba(197, 155, 39, 0.4);
             transition: all 0.3s ease;
         }
 
         .btn:hover {
-            background: linear-gradient(135deg, #FFFFFF, #FFE8A3);
+            background: linear-gradient(135deg, #221a0f, #09070f);
+            color: #FFE8A3;
             transform: scale(1.05);
-            box-shadow: 0 6px 25px rgba(255, 232, 163, 0.5);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
             letter-spacing: 3px; 
         }
     </style>
 </head>
 <body>
+
+<!-- ลำแสงสปอตไลท์คู่สาดส่องบนเวที -->
+<div class="spotlight-left"></div>
+<div class="spotlight-right"></div>
 
 <!-- ละอองดาวระยิบระยับรอบเวที -->
 <div class="sparkles">
