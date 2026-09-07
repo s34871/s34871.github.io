@@ -3,116 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GitHub Portfolio</title>
+    <title>The Universe Portfolio</title>
     <style>
         :root {
-            --bg-color: #0d1117;
-            --text-color: #c9d1d9;
-            --text-muted: #8b949e;
-            --accent-color: #58a6ff;
-            --card-bg: #161b22;
-            --border-color: #30363d;
+            --bg-color: #faf9f6; /* ขาวออฟไวท์หรูหรา */
+            --text-dark: #1a1a1a;
+            --gold-primary: #d4af37; /* ทองเมทัลลิก */
+            --gold-light: #f3e5ab;
+            --gold-gradient: linear-gradient(135deg, #b38728, #fbf5b7, #daa520, #fbf5b7, #aa771c);
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --border-gold: 1px solid rgba(212, 175, 55, 0.3);
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            font-family: 'Cinzel', 'Playfair Display', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
-            color: var(--text-color);
+            color: var(--text-dark);
             margin: 0;
             padding: 0;
             line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* เอฟเฟกต์แสงไฟระยิบระยับ (Sparkling Lights Background) */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle, #fff 10%, transparent 20%),
+                radial-gradient(circle, rgba(255,245,183,0.8) 15%, transparent 25%),
+                radial-gradient(circle, #fff 10%, transparent 20%);
+            background-size: 400px 400px, 500px 500px, 300px 300px;
+            background-position: 0 0, 40px 160px, 130px 270px;
+            animation: sparkle 20s linear infinite;
+            opacity: 0.4;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @keyframes sparkle {
+            0% { background-position: 0 0, 40px 160px, 130px 270px; }
+            100% { background-position: 400px 400px, 540px 660px, 430px 570px; }
         }
 
         header {
-            background-color: var(--card-bg);
-            border-bottom: 1px solid var(--border-color);
-            padding: 2rem 1rem;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(250,249,246,0.8));
+            border-bottom: 2px solid transparent;
+            border-image: var(--gold-gradient) 1;
+            padding: 4rem 1rem;
             text-align: center;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.05);
         }
 
+        .profile-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* แสงออร่ารอบรูปโปรไฟล์ */
         .profile-img {
-            width: 120px;
-            height: 120px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
-            border: 2px solid var(--accent-color);
+            border: 3px solid transparent;
+            background-image: var(--gold-gradient);
+            background-clip: border-box;
             object-fit: cover;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
         }
 
         h1 {
-            margin: 1rem 0 0.5rem 0;
-            font-size: 2rem;
+            margin: 1.5rem 0 0.5rem 0;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            font-weight: 700;
         }
 
         .subtitle {
-            color: var(--text-muted);
-            margin-bottom: 1rem;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
         }
 
         .social-links a {
-            color: var(--accent-color);
+            color: var(--text-dark);
             text-decoration: none;
-            margin: 0 10px;
-            font-weight: bold;
+            margin: 0 15px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+            border-bottom: 1px solid transparent;
         }
 
         .social-links a:hover {
-            text-decoration: underline;
+            color: #b38728;
+            border-bottom: 1px solid #b38728;
         }
 
         main {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+            max-width: 950px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
         }
 
         section {
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
 
         h2 {
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 0.5rem;
-            font-size: 1.5rem;
+            text-align: center;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            position: relative;
+            color: #aa771c;
+        }
+
+        /* เส้นใต้หรูหราแบบมีประกายตรงกลาง */
+        h2::after {
+            content: '✦';
+            display: block;
+            font-size: 1rem;
+            color: var(--gold-primary);
+            margin-top: 0.5rem;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
         }
 
         .card {
             background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 1.5rem;
-            transition: transform 0.2s, border-color 0.2s;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.02);
+            transition: all 0.4s ease;
+            backdrop-filter: blur(5px);
         }
 
         .card:hover {
-            transform: translateY(-4px);
-            border-color: var(--accent-color);
+            transform: translateY(-8px);
+            border-color: var(--gold-primary);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.15);
         }
 
         .card h3 {
             margin-top: 0;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 1.3rem;
         }
 
         .card h3 a {
-            color: var(--accent-color);
+            color: var(--text-dark);
             text-decoration: none;
+            transition: color 0.3s;
         }
 
         .card h3 a:hover {
-            text-decoration: underline;
+            color: var(--gold-primary);
         }
 
         .card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
+            color: #555;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
         }
 
         .tags {
@@ -122,84 +193,119 @@
         }
 
         .tag {
-            background-color: rgba(56, 139, 253, 0.1);
-            color: var(--accent-color);
-            padding: 0.2rem 0.6rem;
-            border-radius: 2rem;
+            background: linear-gradient(135deg, rgba(251,245,119,0.15), rgba(212,175,55,0.15));
+            color: #aa771c;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
             font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .skills-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .skill-badge {
+            background-color: white;
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
             font-weight: 500;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.02);
+            transition: all 0.3s;
+        }
+
+        .skill-badge:hover {
+            background: var(--gold-gradient);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        #about p {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: #444;
         }
 
         footer {
             text-align: center;
-            padding: 2rem;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            border-top: 1px solid var(--border-color);
-            margin-top: 4rem;
+            padding: 3rem;
+            color: #777;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            background-color: white;
+            letter-spacing: 1px;
         }
     </style>
+    <!-- โหลดฟอนต์แนวหรูหรามาใช้งาน -->
+    <link href="https://googleapis.com" rel="stylesheet">
 </head>
 <body>
 
     <header>
-        <!-- เปลี่ยน URL รูปภาพโปรไฟล์ของคุณตรงนี้ -->
-        <img src="https://github.com" alt="Profile Picture" class="profile-img">
-        <h1>ชื่อของคุณ (Your Name)</h1>
-        <p class="subtitle">Full Stack Developer / Software Engineer</p>
+        <div class="profile-container">
+            <!-- เปลี่ยน URL รูปภาพมงกุฎหรือรูปของคุณตรงนี้ -->
+            <img src="https://unsplash.com" alt="Your Portrait" class="profile-img">
+        </div>
+        <h1>Confidently Beautiful</h1>
+        <p class="subtitle">Your Name &bull; Portfolio</p>
         <div class="social-links">
-            <a href="https://github.com" target="_blank">GitHub</a>
-            <a href="https://linkedin.com" target="_blank">LinkedIn</a>
-            <a href="mailto:your.email@example.com">Email</a>
+            <a href="#" target="_blank">GitHub</a>
+            <a href="#" target="_blank">LinkedIn</a>
+            <a href="#">Contact</a>
         </div>
     </header>
 
     <main>
         <section id="about">
-            <h2>About Me</h2>
-            <p>อธิบายเกี่ยวกับตัวคุณสั้นๆ ตรงนี้ เช่น ประสบการณ์การทำงาน สิ่งที่คุณสนใจเป็นพิเศษ หรือเป้าหมายในการพัฒนาซอฟต์แวร์ของคุณ</p>
+            <h2>The Journey</h2>
+            <p>"ความงดงามที่แท้จริงคือความมั่นใจและศักยภาพ" ยินดีต้อนรับสู่พอร์ตโฟลิโอของฉัน ที่ซึ่งความตั้งใจ เทคโนโลยี และความคิดสร้างสรรค์มาบรรจบกันเพื่อสร้างสรรค์ผลงานอันทรงคุณค่า</p>
         </section>
 
         <section id="projects">
-            <h2>Featured Projects</h2>
+            <h2>Masterpieces</h2>
             <div class="grid">
                 <!-- โปรเจกต์ที่ 1 -->
                 <div class="card">
-                    <h3><a href="#" target="_blank">Project Name 1</a></h3>
-                    <p>คำอธิบายสั้นๆ เกี่ยวกับโปรเจกต์นี้ ระบบทำงานอย่างไร และใช้แก้ปัญหาอะไร</p>
+                    <h3><a href="#" target="_blank">👑 Project Golden Crown</a></h3>
+                    <p>ระบบบริหารจัดการและจัดการข้อมูลแอปพลิเคชันระดับพรีเมียม ตอบโจทย์การใช้งานที่ลื่นไหลและการแสดงผลที่งดงาม</p>
                     <div class="tags">
-                        <span class="tag">HTML</span>
-                        <span class="tag">CSS</span>
-                        <span class="tag">JavaScript</span>
+                        <span class="tag">NEXT.JS</span>
+                        <span class="tag">TAILWIND</span>
+                        <span class="tag">SUPABASE</span>
                     </div>
                 </div>
 
                 <!-- โปรเจกต์ที่ 2 -->
                 <div class="card">
-                    <h3><a href="#" target="_blank">Project Name 2</a></h3>
-                    <p>รายละเอียดของระบบที่สอง ฟังก์ชันเด่น และจุดเด่นของแอปพลิเคชัน</p>
+                    <h3><a href="#" target="_blank">✨ Universe Analytics</a></h3>
+                    <p>แพลตฟอร์มวิเคราะห์ข้อมูลเชิงลึกที่มาพร้อม Dashboard สรุปผลความงามของตัวเลขและสถิติอย่างแม่นยำ</p>
                     <div class="tags">
-                        <span class="tag">React</span>
-                        <span class="tag">Node.js</span>
-                        <span class="tag">MongoDB</span>
+                        <span class="tag">PYTHON</span>
+                        <span class="tag">REACT</span>
+                        <span class="tag">D3.JS</span>
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="skills">
-            <h2>Skills & Technologies</h2>
-            <div class="tags" style="font-size: 1rem;">
-                <span class="tag" style="padding: 0.4rem 1rem;">Frontend: HTML, CSS, React</span>
-                <span class="tag" style="padding: 0.4rem 1rem;">Backend: Node.js, Python</span>
-                <span class="tag" style="padding: 0.4rem 1rem;">Tools: Git, Docker, GitHub Pages</span>
+            <h2>Core Expertise</h2>
+            <div class="skills-container">
+                <div class="skill-badge">Branding & Design</div>
+                <div class="skill-badge">Frontend Development</div>
+                <div class="skill-badge">Creative Directing</div>
+                <div class="skill-badge">Public Speaking</div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 Your Name. Powered by GitHub Pages.</p>
-    </footer>
-
-</body>
-</html>
