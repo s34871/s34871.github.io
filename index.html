@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adisorn - The Universe ✨</title>
     <style>
-        /* ตั้งค่าพื้นหลังธีมจักรวาลหรูหรา */
+        /* ตั้งค่าพื้นหลังธีมอวกาศและทางช้างเผือกแบบมีมิติ */
         body {
-            background: radial-gradient(circle at center, #1a1726 0%, #09070f 100%);
+            background: #020105 radial-gradient(circle at 50% 50%, #161224 0%, #05020a 80%, #000000 100%);
             color: #f4edd9;
             font-family: 'Cinzel', 'Playfair Display', 'Segoe UI', serif;
             display: flex;
@@ -22,7 +22,40 @@
             overflow: hidden;
         }
 
-        /* --- ส่วนของประกายดาวสีทอง (Glittering Gold Sparkles) --- */
+        /* --- สร้างดวงดาวนับร้อยในอวกาศ (Deep Space Background Stars) --- */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.6;
+            /* ใช้เงาหลายจุดจำลองเป็นดวงดาวขนาดเล็ก 1px และ 2px ในอวกาศ */
+            box-shadow: 
+                10vw 20vh #fff, 25vw 12vh #fff, 85vw 15vh #fff, 70vw 25vh #fff,
+                40vw 35vh #fff, 15vw 55vh #fff, 80vw 60vh #fff, 92vw 45vh #fff,
+                5vw 80vh #fff, 30vw 75vh #fff, 65vw 85vh #fff, 88vw 80vh #fff,
+                50vw 15vh #e2d2fe, 75vw 40vh #ffd700, 20vw 65vh #ffe8a3, 60vw 70vh #fff;
+        }
+        body::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.4;
+            box-shadow: 
+                18vw 8vh #fff, 32vw 28vh #fff, 78vw 8vh #fff, 62vw 38vh #fff,
+                45vw 68vh #fff, 12vw 42vh #fff, 88vw 52vh #fff, 95vw 12vh #fff,
+                8vw 92vh #fff, 24vw 88vh #fff, 55vw 92vh #fff, 82vw 95vh #fff,
+                38vw 50vh #fff, 68vw 18vh #fff, 3vw 68vh #fff, 48vw 82vh #ffd700;
+        }
+
+        /* --- ส่วนของประกายดาวสีทองวิ้งๆ ด้านหน้า (Glittering Gold Sparkles) --- */
         .sparkles {
             position: absolute;
             top: 0;
@@ -66,10 +99,10 @@
 
         /* --- การ์ดประกวดสุดพรีเมียม (The Universe Card) --- */
         .card {
-            background: rgba(15, 12, 22, 0.75);
+            background: rgba(10, 7, 16, 0.75);
             backdrop-filter: blur(12px);
             border-radius: 16px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 30px rgba(212, 175, 55, 0.15);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 30px rgba(212, 175, 55, 0.15);
             max-width: 500px; 
             width: 100%;
             padding: 50px 40px;
@@ -83,7 +116,7 @@
         .card:hover {
             transform: translateY(-8px);
             border-color: rgba(255, 215, 0, 0.8);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 0 0 40px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.3);
         }
 
         /* หัวข้อหลักมงกุฎแห่งจักรวาล */
@@ -122,7 +155,7 @@
             background: linear-gradient(135deg, #FFE8A3, #C59B27);
             color: #09070f;
             text-decoration: none;
-            border-radius: 4px; /* ทรงเหลี่ยมมนเล็กน้อยดูโมเดิร์นและภูมิฐาน */
+            border-radius: 4px; 
             font-weight: 700;
             font-size: 15px;
             letter-spacing: 2px;
@@ -135,7 +168,7 @@
             background: linear-gradient(135deg, #FFFFFF, #FFE8A3);
             transform: scale(1.05);
             box-shadow: 0 6px 25px rgba(255, 232, 163, 0.5);
-            letter-spacing: 3px; /* ยืดตัวอักษรออกเล็กน้อยตอนโฮเวอร์ */
+            letter-spacing: 3px; 
         }
     </style>
 </head>
