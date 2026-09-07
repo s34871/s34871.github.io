@@ -1,267 +1,90 @@
-<!-- นี่คือโครงสร้างหน้าเว็บทั้งหมด -->
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>หน้าแนะนำตัวของฉัน</title>
-<style>
-:root {
-    --bg-color: #faf9f6; /* สีขาวออฟไวท์หรูหรา */
-    --text-dark: #1a1a1a;
-    --gold-gradient: linear-gradient(135deg, #b38728, #fbf5b7, #daa520, #fbf5b7, #aa771c);
-    --gold-primary: #d4af37;
-    --card-bg: rgba(255, 255, 255, 0.96);
-}
-
-body {
-    background-color: var(--bg-color); 
-    color: var(--text-dark);
-    text-align: center; 
-    padding: 50px 20px;
-    font-family: 'Cinzel', 'Playfair Display', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    overflow-x: hidden;
-}
-
-/* เอฟเฟกต์ลายเพชรบนชุดราตรีที่ปรับให้เข้มขึ้นชัดเจน */
-body::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* ปรับค่าสีความเข้มข้นขยับจาก 0.04 เป็น 0.12 และเพิ่มจุดประกายสีขาวทองสว่าง */
-    background: 
-        radial-gradient(circle, #fff 15%, transparent 25%) 0 0 / 350px 350px,
-        radial-gradient(circle, rgba(255,241,143,0.9) 18%, transparent 28%) 50px 150px / 450px 450px,
-        linear-gradient(115deg, rgba(212,175,55,0.12) 25%, transparent 25%) 0 0 / 40px 70px,
-        linear-gradient(245deg, rgba(212,175,55,0.12) 25%, transparent 25%) 0 0 / 40px 70px,
-        linear-gradient(115deg, rgba(212,175,55,0.12) 25%, transparent 25%) 20px 35px / 40px 70px,
-        linear-gradient(245deg, rgba(212,175,55,0.12) 25%, transparent 25%) 20px 35px / 40px 70px;
-    animation: sparkle bgMove 25s linear infinite;
-    opacity: 0.95;
-    z-index: 1;
-    pointer-events: none;
-}
-
-@keyframes bgMove {
-    0% { background-position: 0 0, 50px 150px, 0 0, 0 0, 20px 35px, 20px 35px; }
-    100% { background-position: 350px 350px, 500px 600px, 40px 70px, 40px 70px, 60px 105px, 60px 105px; }
-}
-
-/* แสงแฟลชสปอตไลท์ส่องสว่างตรงกลาง */
-.spotlight {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: radial-gradient(circle at center, rgba(255,255,255,0.95) 0%, rgba(250,249,246,0) 75%);
-    z-index: 2;
-    pointer-events: none;
-}
-
-/* สไตล์ชิ้นส่วนของหิมะดาวตกโปรยปราย */
-.snowflake {
-    position: absolute;
-    top: -10px;
-    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(212,175,55,0.8) 50%, transparent 100%);
-    border-radius: 50%;
-    z-index: 3;
-    pointer-events: none;
-    animation: fall linear infinite;
-}
-
-@keyframes fall {
-    0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 0;
-    }
-    10% {
-        opacity: 1;
-    }
-    90% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(105vh) rotate(360deg);
-        opacity: 0;
-    }
-}
-
-.card {
-    background: var(--card-bg); 
-    border-radius: 20px; 
-    box-shadow: 0 20px 50px rgba(212, 175, 55, 0.22);
-    max-width: 550px; 
-    margin: 0 auto; 
-    padding: 50px 40px;
-    border: 1px solid rgba(212, 175, 55, 0.4);
-    position: relative;
-    z-index: 10;
-    backdrop-filter: blur(8px);
-    transition: all 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 25px 60px rgba(212, 175, 55, 0.35);
-    border-color: rgba(212, 175, 55, 0.6);
-}
-
-.crown-logo {
-    font-size: 2.8rem;
-    color: var(--gold-primary);
-    margin-bottom: 15px;
-    display: inline-block;
-    animation: pulse 2.5s infinite;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(212,175,55,0.4)); }
-    50% { transform: scale(1.05); filter: drop-shadow(0 0 20px rgba(212,175,55,0.8)); }
-    100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(212,175,55,0.4)); }
-}
-
-h1 { 
-    background: var(--gold-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-transform: uppercase;
-    font-size: 1.9rem;
-    letter-spacing: 1px;
-    margin-bottom: 30px;
-    font-weight: 700;
-}
-
-p { 
-    font-size: 18px; 
-    line-height: 1.8; 
-    color: #333;
-    margin: 15px 0;
-}
-
-p strong {
-    color: #aa771c;
-    font-size: 1.2rem;
-    letter-spacing: 0.5px;
-}
-
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px; 
-    margin-top: 35px;
-    padding: 14px 45px;
-    font-size: 1.05rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: white;
-    background: linear-gradient(135deg, #b38728, #daa520, #aa771c);
-    border: none;
-    border-radius: 50px; 
-    cursor: pointer;
-    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
-    overflow: hidden;
-    position: relative;
-    transition: all 0.3s ease;
-}
-
-.btn .arrow {
-    display: inline-block;
-    transition: transform 0.3s ease;
-}
-
-.btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.6),
-        transparent
-    );
-    animation: shimmer 3s infinite;
-}
-
-@keyframes shimmer {
-    0% { left: -100%; }
-    30% { left: 100%; }
-    100% { left: 100%; }
-}
-
-.btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 35px rgba(212, 175, 55, 0.55);
-    letter-spacing: 3px;
-}
-
-.btn:hover .arrow {
-    transform: translateX(5px);
-}
-</style>
-<link href="https://googleapis.com" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>หน้าแรกพอร์ตโฟลิโอ - อดิศร</title>
+    <style>
+        :root {
+            --bg-color: #faf9f6;
+            --text-dark: #1a1a1a;
+            --gold-primary: #d4af37;
+            --gold-gradient: linear-gradient(135deg, #b38728, #fbf5b7, #daa520, #fbf5b7, #aa771c);
+            --card-bg: rgba(255, 255, 255, 0.96);
+            --border-gold: 1px solid rgba(212, 175, 55, 0.35);
+        }
+        body {
+            background-color: var(--bg-color); color: var(--text-dark); text-align: center;
+            padding: 50px 20px; font-family: 'Cinzel', 'Playfair Display', sans-serif; margin: 0;
+            min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            position: relative; overflow-x: hidden;
+        }
+        body::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, #fff 15%, transparent 25%) 0 0 / 350px 350px,
+                radial-gradient(circle, rgba(255,241,143,0.9) 18%, transparent 28%) 50px 150px / 450px 450px,
+                linear-gradient(115deg, rgba(212,175,55,0.12) 25%, transparent 25%) 0 0 / 40px 70px,
+                linear-gradient(245deg, rgba(212,175,55,0.12) 25%, transparent 25%) 0 0 / 40px 70px;
+            animation: bgMove 25s linear infinite; opacity: 0.95; z-index: 1; pointer-events: none;
+        }
+        @keyframes bgMove {
+            0% { background-position: 0 0, 50px 150px, 0 0, 0 0; }
+            100% { background-position: 350px 350px, 500px 600px, 40px 70px, 40px 70px; }
+        }
+        .spotlight { position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; background: radial-gradient(circle at center, rgba(255,255,255,0.95) 0%, rgba(250,249,246,0) 75%); z-index: 2; pointer-events: none; }
+        .snowflake { position: absolute; top: -10px; background: radial-gradient(circle, #fff 0%, rgba(212,175,55,0.8) 50%, transparent 100%); border-radius: 50%; z-index: 3; pointer-events: none; animation: fall linear infinite; }
+        @keyframes fall { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: 1; } 100% { transform: translateY(105vh); opacity: 0; } }
+        
+        .main-container { max-width: 800px; z-index: 10; position: relative; padding: 20px; }
+        .crown-logo { font-size: 3rem; color: var(--gold-primary); margin-bottom: 10px; animation: pulse 2.5s infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); filter: drop-shadow(0 0 15px rgba(212,175,55,0.7)); } }
+        
+        h1 { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.3rem; font-weight: 700; margin-bottom: 5px; }
+        .subtitle { color: #aa771c; font-size: 1.1rem; letter-spacing: 2px; margin-bottom: 40px; font-weight: 600; }
+        
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; width: 100%; max-width: 750px; }
+        .menu-btn {
+            background: var(--card-bg); border: var(--border-gold); border-radius: 50px; padding: 20px;
+            font-size: 1.15rem; font-weight: 700; color: #aa771c; text-decoration: none; display: flex;
+            align-items: center; justify-content: space-between; box-shadow: 0 10px 25px rgba(212, 175, 55, 0.08);
+            transition: all 0.3s ease; position: relative; overflow: hidden;
+        }
+        .menu-btn::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        }
+        .menu-btn:hover::before { animation: shimmer 2s infinite; }
+        @keyframes shimmer { 0% { left: -100%; } 100% { left: 100%; } }
+        .menu-btn:hover { transform: translateY(-4px); border-color: var(--gold-primary); box-shadow: 0 15px 35px rgba(212, 175, 55, 0.25); color: #b38728; }
+        .menu-btn .arrow { transition: transform 0.3s; }
+        .menu-btn:hover .arrow { transform: translateX(5px); }
+    </style>
+    <link href="https://googleapis.com" rel="stylesheet">
 </head>
 <body>
+    <div class="spotlight"></div>
+    <div class="main-container">
+        <div class="crown-logo">✦ 👑 ✦</div>
+        <h1>อดิศร (Adisorn)</h1>
+        <div class="subtitle">ห้องเรียนพิเศษ Gifted Portfolio</div>
+        
+        <div class="menu-grid">
+            <a href="about.html" class="menu-btn"><span>👑 ประวัติส่วนตัว</span> <span class="arrow">⟶</span></a>
+            <a href="education.html" class="menu-btn"><span>🎓 ประวัติการศึกษา</span> <span class="arrow">⟶</span></a>
+            <a href="activities.html" class="menu-btn"><span>✨ กิจกรรมและผลงาน</span> <span class="arrow">⟶</span></a>
+            <a href="future.html" class="menu-btn"><span>✦ ความสนใจศึกษาต่อ</span> <span class="arrow">⟶</span></a>
+        </div>
+    </div>
 
-<div class="spotlight"></div>
-
-<div class="card">
-<div class="crown-logo">✦ 👑 ✦</div>
-<h1>ยินดีต้อนรับสู่โปรไฟล์ของฉัน</h1>
-<p>สวัสดีค่ะ! ฉันชื่อ <strong>อดิศร (Adisorn)</strong></p>
-<p>ขณะนี้กำลังศึกษาอยู่ห้องเรียนพิเศษ <strong>Gifted</strong></p>
-<p>นี่คือเว็บไซต์แรกของฉันที่โฮสต์บน GitHub Pages!</p>
-  <!-- ดูผลงาน -->
-<a href="portfolio.html" class="btn">หน้าถัดไป <span class="arrow">⟶</span></a>
-</div>
-
-<!-- ระบบ JavaScript สร้างละอองดาวหิมะตกโปรยปราย -->
-<script>
-function createSnowflake() {
-    const snowflake = document.createElement('div');
-    snowflake.classList.add('snowflake');
-    
-    // สุ่มขนาดของละอองหิมะดาว (ระหว่าง 2px ถึง 6px)
-    const size = Math.random() * 4 + 2;
-    snowflake.style.width = `${size}px`;
-    snowflake.style.height = `${size}px`;
-    
-    // สุ่มตำแหน่งเริ่มต้นตามแนวแกน X (ซ้ายไปขวา)
-    snowflake.style.left = `${Math.random() * 100}vw`;
-    
-    // สุ่มความเร็วในการร่วงหล่น (ระหว่าง 4 ถึง 8 วินาที)
-    const duration = Math.random() * 4 + 4;
-    snowflake.style.animationDuration = `${duration}s`;
-    
-    // สุ่มความโปร่งใสเบื้องต้น
-    snowflake.style.opacity = Math.random();
-    
-    document.body.appendChild(snowflake);
-    
-    // ลบละอองดาวเมื่อร่วงหล่นจนจบอนิเมชันเพื่อประหยัด RAM หน้าเว็บ
-    setTimeout(() => {
-        snowflake.remove();
-    }, duration * 1000);
-}
-
-// สร้างละอองดาวทุกๆ 150 มิลลิวินาที
-setInterval(createSnowflake, 150);
-</script>
-
+    <script>
+        function createSnowflake() {
+            const snowflake = document.createElement('div'); snowflake.classList.add('snowflake');
+            const size = Math.random() * 4 + 2; snowflake.style.width = `${size}px`; snowflake.style.height = `${size}px`;
+            snowflake.style.left = `${Math.random() * 100}vw`; const duration = Math.random() * 4 + 4;
+            snowflake.style.animationDuration = `${duration}s`; snowflake.style.opacity = Math.random();
+            document.body.appendChild(snowflake); setTimeout(() => { snowflake.remove(); }, duration * 1000);
+        }
+        setInterval(createSnowflake, 150);
+    </script>
 </body>
 </html>
