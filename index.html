@@ -1,114 +1,99 @@
+<!-- นี่คือโครงสร้างหน้าเว็บทั้งหมด -->
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My GitHub Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>หน้าแนะนำตัวของฉัน ✨</title>
+    <style>
+        /* ตั้งค่าพื้นหลังและฟอนต์ให้ดูนุ่มฟู */
+        body {
+            background-color: #FFEAEF; 
+            color: #5D536A;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
-}
+        /* ปรับแต่งการ์ดให้น่ารัก ละมุนตา */
+        .card {
+            background: #FFFFFF; 
+            border-radius: 24px;
+            box-shadow: 0 10px 25px rgba(255, 182, 185, 0.4);
+            max-width: 480px; 
+            width: 100%;
+            padding: 40px 30px;
+            text-align: center;
+            border: 3px solid #FFCAD4;
+            transition: transform 0.3s ease;
+        }
 
-body{
-    background: linear-gradient(135deg,#FFD6E8,#D6F0FF);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:100vh;
-}
+        /* เอฟเฟกต์เวลาเอาเมาส์ไปวางบนการ์ด */
+        .card:hover {
+            transform: translateY(-5px);
+        }
 
-.card{
-    background:rgba(255,255,255,.9);
-    backdrop-filter:blur(10px);
-    width:350px;
-    padding:35px;
-    border-radius:25px;
-    text-align:center;
-    box-shadow:0 10px 30px rgba(0,0,0,.15);
-    animation:fadeIn 1s ease;
-}
+        /* หัวข้อหลัก */
+        h1 { 
+            color: #98719E; 
+            font-size: 26px;
+            margin-bottom: 25px;
+        }
 
-.avatar{
-    width:120px;
-    height:120px;
-    border-radius:50%;
-    border:5px solid #fff;
-    box-shadow:0 5px 15px rgba(0,0,0,.15);
-    margin-bottom:20px;
-}
+        /* ข้อความทั่วไป */
+        p { 
+            font-size: 16px; 
+            line-height: 1.8;
+            margin: 12px 0;
+        }
 
-h1{
-    color:#ff5c8a;
-    margin-bottom:15px;
-}
+        /* ไฮไลต์ข้อความสำคัญ */
+        strong {
+            color: #FF7B94;
+            background: #FFEAEF;
+            padding: 2px 8px;
+            border-radius: 8px;
+        }
 
-p{
-    color:#555;
-    font-size:17px;
-    line-height:1.8;
-}
+        /* ตกแต่งปุ่ม "หน้าถัดไป" ให้น่ารักน่ากด */
+        .btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 35px;
+            background: linear-gradient(135deg, #FFB6B9, #FFCAD4);
+            color: #FFFFFF;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 16px;
+            box-shadow: 0 4px 15px rgba(255, 182, 185, 0.4);
+            transition: all 0.3s ease;
+        }
 
-.btn{
-    display:inline-block;
-    margin-top:25px;
-    padding:12px 30px;
-    background:#ff7eb3;
-    color:white;
-    text-decoration:none;
-    border-radius:30px;
-    font-weight:bold;
-    transition:.3s;
-}
-
-.btn:hover{
-    background:#ff4f95;
-    transform:scale(1.08);
-}
-
-.icon{
-    font-size:30px;
-    margin-top:15px;
-}
-
-@keyframes fadeIn{
-    from{
-        opacity:0;
-        transform:translateY(20px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-</style>
-
+        /* เอฟเฟกต์เวลาเอาเมาส์ไปวางบนปุ่ม */
+        .btn:hover {
+            background: linear-gradient(135deg, #FF7B94, #FFB6B9);
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 114, 140, 0.4);
+        }
+    </style>
 </head>
 <body>
 
 <div class="card">
-
-    <!-- เปลี่ยนเป็นรูปของตัวเองได้ -->
-    <img src="https://i.imgur.com/4Z7Q6Qb.png" class="avatar" alt="Avatar">
-
-    <h1>🌸 ยินดีต้อนรับ 🌸</h1>
-
-    <p>สวัสดีครับ 👋</p>
-
-    <p><strong>ผมชื่อ อดิศร (Adisorn)</strong></p>
-
-    <p>🎓 นักเรียนห้องเรียนพิเศษ Gifted</p>
-
-    <p>💻 กำลังฝึกเขียนเว็บไซต์ด้วย HTML และ GitHub Pages</p>
-
-    <div class="icon">🌷✨🌈</div>
-
-    <a href="portfolio.html" class="btn">
-        ดูผลงานของฉัน 🚀
-</a>
+    <h1>ยินดีต้อนรับสู่โปรไฟล์ของฉัน 👋✨</h1>
+    <p>สวัสดีค่ะ! ฉันชื่อ <strong>อดิศร (Adisorn)</strong></p>
+    <p>กำลังศึกษาอยู่ห้องเรียนพิเศษ 🎀 <strong>Gifted</strong></p>
+    <p>นี่คือเว็บไซต์แรกของฉันที่โฮสต์บน GitHub Pages! 🚀</p>
+    
+    <!-- ดูผลงาน -->
+    <a href="portfolio.html" class="btn">หน้าถัดไป ✨</a>
 </div>
+
 </body>
 </html>
