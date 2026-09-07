@@ -6,352 +6,86 @@
 <title>ชื่อ นามสกุล — พอร์ตโฟลิโอ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=Noto+Sans+Thai:wght@400;500;600&family=Noto+Serif+Thai:wght@500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --paper:#FAFAF7;
-    --ink:#1B1B16;
-    --mute:#6E6E64;
-    --rule:#DAD9D0;
-    --accent:#5B6B3F;
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--paper);
-    color:var(--ink);
-    font-family:'Inter','Noto Sans Thai',sans-serif;
-    font-size:16px;
-    line-height:1.65;
-    -webkit-font-smoothing:antialiased;
-  }
-  h1,h2,h3{
-    font-family:'Fraunces','Noto Serif Thai',serif;
-    font-weight:600;
-    margin:0;
-  }
-  a{color:var(--accent);}
-  .wrap{
-    max-width:920px;
-    margin:0 auto;
-    padding:0 28px;
-  }
-  /* --- ดัชนี/เมนู ด้านบน --- */
-  nav{
-    position:sticky; top:0; z-index:10;
-    background:var(--paper);
-    border-bottom:1px solid var(--rule);
-  }
-  nav .wrap{
-    display:flex; align-items:center; justify-content:space-between;
-    padding-top:16px; padding-bottom:16px;
-    gap:16px; flex-wrap:wrap;
-  }
-  nav .brand{font-family:'Fraunces','Noto Serif Thai',serif; font-size:18px;}
-  nav ul{list-style:none; display:flex; gap:22px; margin:0; padding:0; flex-wrap:wrap;}
-  nav a{color:var(--ink); text-decoration:none; font-size:14px; border-bottom:1px solid transparent;}
-  nav a:hover{border-bottom-color:var(--accent); color:var(--accent);}
-
-  /* --- ส่วนหัว --- */
-  header.hero{
-    padding:96px 0 72px;
-    border-bottom:1px solid var(--rule);
-  }
-  header.hero .kicker{
-    color:var(--mute); font-size:15px; margin-bottom:14px;
-  }
-  header.hero h1{
-    font-size:clamp(38px,6vw,64px);
-    line-height:1.08;
-    letter-spacing:-0.01em;
-  }
-  header.hero p.lead{
-    max-width:56ch;
-    margin-top:22px;
-    font-size:18px;
-    color:#3A3A32;
-  }
-  header.hero .meta{
-    margin-top:32px;
-    display:flex; gap:28px; flex-wrap:wrap;
-    font-size:14px; color:var(--mute);
-  }
-
-  section{
-    padding:64px 0;
-    border-bottom:1px solid var(--rule);
-  }
-  section:last-of-type{border-bottom:none;}
-  section h2{
-    font-size:28px;
-    margin-bottom:32px;
-  }
-
-  /* --- เกี่ยวกับฉัน --- */
-  .about-grid{
-    display:grid;
-    grid-template-columns:1.3fr 1fr;
-    gap:48px;
-  }
-  .about-grid p{max-width:60ch; color:#333329;}
-  .fact-list{list-style:none; margin:0; padding:0;}
-  .fact-list li{
-    display:flex; justify-content:space-between;
-    padding:10px 0; border-bottom:1px solid var(--rule);
-    font-size:14px;
-  }
-  .fact-list li span:first-child{color:var(--mute);}
-
-  /* --- การศึกษา: เส้นเวลา --- */
-  .timeline{border-left:1px solid var(--rule); margin-left:6px;}
-  .timeline .item{
-    position:relative;
-    padding:0 0 36px 28px;
-  }
-  .timeline .item:last-child{padding-bottom:0;}
-  .timeline .item::before{
-    content:'';
-    position:absolute; left:-5px; top:6px;
-    width:9px; height:9px; border-radius:50%;
-    background:var(--paper); border:1.5px solid var(--accent);
-  }
-  .timeline .year{color:var(--mute); font-size:13px; margin-bottom:4px;}
-  .timeline h3{font-size:19px; font-weight:600;}
-  .timeline p{margin:6px 0 0; color:#3A3A32; max-width:58ch;}
-
-  /* --- ทักษะ --- */
-  .skills{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:32px 40px;
-  }
-  .skill-group h3{font-size:15px; color:var(--mute); font-weight:500; margin-bottom:14px;}
-  .skill-group ul{list-style:none; margin:0; padding:0;}
-  .skill-group li{
-    padding:9px 0; border-bottom:1px solid var(--rule);
-    font-size:15px;
-    display:flex; justify-content:space-between; align-items:center;
-  }
-  .bar{width:90px; height:3px; background:var(--rule); position:relative;}
-  .bar i{position:absolute; left:0; top:0; height:100%; background:var(--accent); display:block;}
-
-  /* --- ผลงาน --- */
-  .projects{display:flex; flex-direction:column;}
-  .project{
-    display:grid;
-    grid-template-columns:110px 1fr;
-    gap:24px;
-    padding:28px 0;
-    border-bottom:1px solid var(--rule);
-  }
-  .project:last-child{border-bottom:none;}
-  .project .num{font-size:14px; color:var(--mute); padding-top:4px;}
-  .project h3{font-size:20px; margin-bottom:8px;}
-  .project p{margin:0 0 10px; color:#3A3A32; max-width:60ch;}
-  .project .tags{display:flex; gap:8px; flex-wrap:wrap;}
-  .project .tags span{
-    font-size:12.5px; color:var(--mute);
-    border:1px solid var(--rule); border-radius:3px;
-    padding:3px 9px;
-  }
-
-  /* --- กิจกรรม --- */
-  .activities ul{list-style:none; margin:0; padding:0;}
-  .activities li{
-    padding:16px 0; border-bottom:1px solid var(--rule);
-    display:grid; grid-template-columns:100px 1fr; gap:20px;
-  }
-  .activities li:last-child{border-bottom:none;}
-  .activities .when{color:var(--mute); font-size:13px; padding-top:2px;}
-  .activities .what b{font-weight:600;}
-  .activities .what span{display:block; color:#3A3A32; font-size:14.5px; margin-top:3px;}
-
-  /* --- ติดต่อ --- */
-  footer{padding:64px 0 88px;}
-  footer h2{font-size:30px; margin-bottom:18px;}
-  footer p{color:#3A3A32; max-width:52ch; margin-bottom:28px;}
-  .contact-links{display:flex; flex-direction:column; gap:10px;}
-  .contact-links a{
-    font-size:16px; text-decoration:none; color:var(--ink);
-    border-bottom:1px solid var(--rule);
-    padding-bottom:10px; max-width:400px;
-    display:flex; justify-content:space-between;
-  }
-  .contact-links a span{color:var(--mute); font-size:13px;}
-  .contact-links a:hover{color:var(--accent); border-bottom-color:var(--accent);}
-
-  @media (max-width:720px){
-    .about-grid{grid-template-columns:1fr;}
-    .project{grid-template-columns:1fr;}
-    .project .num{padding-top:0;}
-    .activities li{grid-template-columns:1fr; gap:6px;}
-    nav ul{gap:14px;}
-  }
-
-  :focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
-  @media (prefers-reduced-motion: reduce){
-    html{scroll-behavior:auto;}
-  }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500;1,9..144,600&family=Space+Grotesk:wght@400;500;600&family=Noto+Sans+Thai:wght@400;500;600&family=Noto+Serif+Thai:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
 <nav>
   <div class="wrap">
-    <div class="brand">ชื่อ นามสกุล</div>
+    <a class="brand" href="index.html">ชื่อ นามสกุล</a>
     <ul>
-      <li><a href="#about">เกี่ยวกับฉัน</a></li>
-      <li><a href="#education">การศึกษา</a></li>
-      <li><a href="#skills">ทักษะ</a></li>
-      <li><a href="#projects">ผลงาน</a></li>
-      <li><a href="#activities">กิจกรรม</a></li>
-      <li><a href="#contact">ติดต่อ</a></li>
+      <li><a class="nav-link" href="about.html">เกี่ยวกับฉัน</a></li>
+      <li><a class="nav-link" href="education.html">การศึกษา</a></li>
+      <li><a class="nav-link" href="skills.html">ทักษะ</a></li>
+      <li><a class="nav-link" href="projects.html">ผลงาน</a></li>
+      <li><a class="nav-link" href="activities.html">กิจกรรม</a></li>
+      <li><a class="nav-link" href="contact.html">ติดต่อ</a></li>
+      
     </ul>
   </div>
 </nav>
 
 <header class="hero">
-  <div class="wrap">
-    <div class="kicker">พอร์ตโฟลิโอนักเรียน · ปีการศึกษา 2569</div>
-    <h1>สวัสดีครับ ผม<br>ชื่อ นามสกุล</h1>
-    <p class="lead">นักเรียนชั้นมัธยมศึกษาปีที่ 6 สนใจด้าน [ระบุความสนใจ เช่น วิทยาศาสตร์คอมพิวเตอร์ / ศิลปะ / ธุรกิจ] ชอบเรียนรู้สิ่งใหม่และลงมือทำโปรเจกต์จริง</p>
+  <div class="hero-watermark">SKETCHBOOK</div>
+  <div class="wrap hero-inner">
+    <div class="stickers">
+      <span class="sticker c1">ม.6</span>
+      <span class="sticker c2">[จังหวัด]</span>
+      <span class="sticker c3">ศิลปะ &amp; ความคิดสร้างสรรค์</span>
+    </div>
+    <h1>ชื่อ นามสกุล<br><span class="line2">ยินดีต้อนรับสู่พอร์ตของฉัน</span></h1>
+    <p class="lead">นักเรียนชั้นมัธยมศึกษาปีที่ 6 หลงใหลใน [ระบุความสนใจ เช่น การวาดภาพ / กราฟิกดีไซน์ / งานคราฟต์] มองทุกโปรเจกต์เป็นหน้าใหม่ในสมุดสเก็ตช์ที่ยังเขียนไม่จบ</p>
     <div class="meta">
       <span>โรงเรียน [ชื่อโรงเรียน]</span>
-      <span>[จังหวัด], ประเทศไทย</span>
       <span>เกรดเฉลี่ย [X.XX]</span>
+      <span>เปิดรับงาน/ทุนการศึกษา</span>
     </div>
   </div>
 </header>
 
-<section id="about">
-  <div class="wrap about-grid">
-    <div>
-      <h2>เกี่ยวกับฉัน</h2>
-      <p>เขียนแนะนำตัวสั้น ๆ 3-5 บรรทัด เล่าว่าคุณเป็นใคร สนใจอะไรเป็นพิเศษ และอยากไปทางไหนต่อในอนาคต เช่น อยากเรียนต่อคณะอะไร หรือทำงานสายไหน เขียนด้วยน้ำเสียงของตัวเองให้เป็นธรรมชาติที่สุด</p>
-      <p>ใส่เรื่องราวหรือแรงบันดาลใจที่ทำให้สนใจด้านนี้ก็ได้ จะช่วยให้พอร์ตน่าจดจำมากขึ้น</p>
-    </div>
-    <ul class="fact-list">
-      <li><span>ระดับชั้น</span><span>ม.6</span></li>
-      <li><span>ภาษา</span><span>ไทย, อังกฤษ</span></li>
-      <li><span>สนใจ</span><span>[ระบุ 2-3 อย่าง]</span></li>
-      <li><span>เป้าหมาย</span><span>[เช่น คณะวิศวกรรมศาสตร์]</span></li>
-    </ul>
-  </div>
-</section>
-
-<section id="education">
+<main>
+<section class="section-preview">
   <div class="wrap">
-    <h2>การศึกษา</h2>
-    <div class="timeline">
-      <div class="item">
-        <div class="year">2567 — ปัจจุบัน</div>
-        <h3>โรงเรียน [ชื่อโรงเรียน]</h3>
-        <p>สายการเรียน [วิทย์-คณิต / ศิลป์-ภาษา ฯลฯ] · กิจกรรมเด่น: [ระบุ]</p>
-      </div>
-      <div class="item">
-        <div class="year">2564 — 2567</div>
-        <h3>โรงเรียน [ชื่อโรงเรียนมัธยมต้น]</h3>
-        <p>ผลงาน/รางวัลที่ได้รับ: [ระบุ]</p>
-      </div>
+    <div class="preview-grid">
+      <a class="preview-card" href="about.html">
+        <span class="tag-num">01</span>
+        <h3>เกี่ยวกับฉัน</h3>
+        <p>เรื่องราว ความสนใจ และเป้าหมายของฉัน</p>
+      </a>
+      <a class="preview-card" href="education.html">
+        <span class="tag-num">02</span>
+        <h3>การศึกษา</h3>
+        <p>เส้นทางการเรียนตั้งแต่อดีตถึงปัจจุบัน</p>
+      </a>
+      <a class="preview-card" href="skills.html">
+        <span class="tag-num">03</span>
+        <h3>ทักษะ</h3>
+        <p>วิชาการ เครื่องมือ และทักษะที่ถนัด</p>
+      </a>
+      <a class="preview-card" href="projects.html">
+        <span class="tag-num">04</span>
+        <h3>ผลงาน</h3>
+        <p>รวมโปรเจกต์และงานที่ภูมิใจ</p>
+      </a>
+      <a class="preview-card" href="activities.html">
+        <span class="tag-num">05</span>
+        <h3>กิจกรรม &amp; รางวัล</h3>
+        <p>สิ่งที่เคยเข้าร่วมและความสำเร็จ</p>
+      </a>
+      <a class="preview-card" href="contact.html">
+        <span class="tag-num">06</span>
+        <h3>ติดต่อ</h3>
+        <p>ช่องทางการติดต่อฉันทั้งหมด</p>
+      </a>
     </div>
   </div>
 </section>
-
-<section id="skills">
+</main>
+<footer class="site-footer">
   <div class="wrap">
-    <h2>ทักษะ</h2>
-    <div class="skills">
-      <div class="skill-group">
-        <h3>ทักษะวิชาการ</h3>
-        <ul>
-          <li>วิชา A <span class="bar"><i style="width:85%"></i></span></li>
-          <li>วิชา B <span class="bar"><i style="width:70%"></i></span></li>
-          <li>วิชา C <span class="bar"><i style="width:60%"></i></span></li>
-        </ul>
-      </div>
-      <div class="skill-group">
-        <h3>เครื่องมือ / เทคนิค</h3>
-        <ul>
-          <li>เครื่องมือ A <span class="bar"><i style="width:75%"></i></span></li>
-          <li>เครื่องมือ B <span class="bar"><i style="width:55%"></i></span></li>
-        </ul>
-      </div>
-      <div class="skill-group">
-        <h3>ทักษะอื่น ๆ</h3>
-        <ul>
-          <li>การนำเสนอ <span class="bar"><i style="width:80%"></i></span></li>
-          <li>การทำงานเป็นทีม <span class="bar"><i style="width:90%"></i></span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="projects">
-  <div class="wrap">
-    <h2>ผลงาน</h2>
-    <div class="projects">
-      <div class="project">
-        <div class="num">01</div>
-        <div>
-          <h3>ชื่อโปรเจกต์ที่ 1</h3>
-          <p>อธิบายสั้น ๆ ว่าโปรเจกต์นี้คืออะไร ทำเพื่ออะไร และผลลัพธ์ที่ได้ 1-2 ประโยค</p>
-          <div class="tags"><span>วิชา/บริบท</span><span>ปี 2568</span></div>
-        </div>
-      </div>
-      <div class="project">
-        <div class="num">02</div>
-        <div>
-          <h3>ชื่อโปรเจกต์ที่ 2</h3>
-          <p>อธิบายสั้น ๆ ว่าโปรเจกต์นี้คืออะไร ทำเพื่ออะไร และผลลัพธ์ที่ได้ 1-2 ประโยค</p>
-          <div class="tags"><span>วิชา/บริบท</span><span>ปี 2568</span></div>
-        </div>
-      </div>
-      <div class="project">
-        <div class="num">03</div>
-        <div>
-          <h3>ชื่อโปรเจกต์ที่ 3</h3>
-          <p>อธิบายสั้น ๆ ว่าโปรเจกต์นี้คืออะไร ทำเพื่ออะไร และผลลัพธ์ที่ได้ 1-2 ประโยค</p>
-          <div class="tags"><span>วิชา/บริบท</span><span>ปี 2567</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="activities">
-  <div class="wrap activities">
-    <h2>กิจกรรม & รางวัล</h2>
-    <ul>
-      <li>
-        <div class="when">2568</div>
-        <div class="what"><b>ชื่อกิจกรรมหรือรางวัล</b><span>รายละเอียดสั้น ๆ เกี่ยวกับบทบาทหรือผลงาน</span></div>
-      </li>
-      <li>
-        <div class="when">2567</div>
-        <div class="what"><b>ชื่อกิจกรรมหรือรางวัล</b><span>รายละเอียดสั้น ๆ เกี่ยวกับบทบาทหรือผลงาน</span></div>
-      </li>
-      <li>
-        <div class="when">2567</div>
-        <div class="what"><b>ชื่อกิจกรรมหรือรางวัล</b><span>รายละเอียดสั้น ๆ เกี่ยวกับบทบาทหรือผลงาน</span></div>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<footer id="contact">
-  <div class="wrap">
-    <h2>ติดต่อฉัน</h2>
-    <p>สนใจอยากคุยกัน ติดต่องาน หรือแค่อยากทักทาย ส่งข้อความมาได้เลย</p>
-    <div class="contact-links">
-      <a href="mailto:youremail@example.com">อีเมล <span>youremail@example.com</span></a>
-      <a href="https://github.com/yourusername" target="_blank" rel="noopener">GitHub <span>@yourusername</span></a>
-      <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener">LinkedIn <span>/in/yourusername</span></a>
-      <a href="tel:+66000000000">โทรศัพท์ <span>08X-XXX-XXXX</span></a>
-    </div>
+    <span>© 2569 ชื่อ นามสกุล — ทำด้วยความตั้งใจ</span>
+    <a href="contact.html">ติดต่อฉัน →</a>
   </div>
 </footer>
-
 </body>
 </html>
