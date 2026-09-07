@@ -1,15 +1,18 @@
-<!-- นี่คือโครงสร้างหน้าเว็บทั้งหมด -->
 <!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adisorn - Portfolio ✨</title>
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Cinzel:wght@600;700&family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
         body {
-            background: #020105 radial-gradient(circle at 50% 50%, #161224 0%, #05020a 80%, #000000 100%);
+            background: #05020a linear-gradient(180deg, #05020a 0%, #161224 50%, #000000 100%);
             color: #2c2518; 
-            font-family: 'Cinzel', 'Playfair Display', 'Segoe UI', serif;
+            font-family: 'Sarabun', 'Segoe UI', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -20,96 +23,79 @@
             position: relative;
             overflow-x: hidden;
         }
+
         .container {
             max-width: 750px;
             width: 100%;
             margin: 0 auto;
             position: relative;
-            z-index: 2; /* ให้อยู่เหนือสปอตไลท์ */
+            z-index: 10;
         }
-        /* --- ดวงดาวนับร้อยในอวกาศชั้นหลัง (Deep Space Background Stars) --- */
+
         body::before, body::after {
             content: "";
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: 0;
+            pointer-events: none;
         }
         body::before {
             opacity: 0.5;
-            box-shadow: 
-                10vw 20vh #fff, 25vw 12vh #fff, 85vw 15vh #fff, 70vw 25vh #fff,
-                40vw 35vh #fff, 15vw 55vh #fff, 80vw 60vh #fff, 92vw 45vh #fff,
-                5vw 80vh #fff, 30vw 75vh #fff, 65vw 85vh #fff, 88vw 80vh #fff,
-                50vw 15vh #e2d2fe, 75vw 40vh #fff, 20vw 65vh #ffe8a3, 60vw 70vh #fff;
+            box-shadow: 10vw 20vh #fff, 25vw 12vh #fff, 85vw 15vh #fff, 70vw 25vh #fff, 40vw 35vh #fff, 15vw 55vh #fff, 80vw 60vh #fff, 92vw 45vh #fff;
         }
         body::after {
             opacity: 0.4;
-            box-shadow: 
-                18vw 8vh #fff, 32vw 28vh #fff, 78vw 8vh #fff, 62vw 38vh #fff,
-                45vw 68vh #fff, 12vw 42vh #fff, 88vw 52vh #fff, 95vw 12vh #fff,
-                8vw 92vh #fff, 24vw 88vh #fff, 55vw 92vh #fff, 82vw 95vh #fff,
-                38vw 50vh #fff, 68vw 18vh #fff, 3vw 68vh #fff, 48vw 82vh #fff;
+            box-shadow: 18vw 8vh #fff, 32vw 28vh #fff, 78vw 8vh #fff, 62vw 38vh #fff, 45vw 68vh #fff, 12vw 42vh #fff;
         }
 
-        /* --- เอฟเฟกต์ไฟสปอตไลท์เวทีประกวด (Stage Spotlights) --- */
         .spotlight-left, .spotlight-right {
             position: absolute;
-            bottom: -5%;
-            width: 45vw;
+            bottom: -10%;
+            width: 50vw;
             height: 120vh;
-            background: linear-gradient(0deg, rgba(255, 235, 170, 0.2) 0%, rgba(255, 255, 255, 0.04) 60%, rgba(255, 255, 255, 0) 100%);
+            background: linear-gradient(0deg, rgba(255, 235, 170, 0.12) 0%, rgba(255, 255, 255, 0.03) 60%, rgba(255, 255, 255, 0) 100%);
             clip-path: polygon(45% 100%, 55% 100%, 100% 0%, 0% 0%); 
             z-index: 1;
             pointer-events: none;
             transform-origin: bottom center;
         }
-        .spotlight-left { left: -5%; transform: rotate(20deg); animation: swingLeft 8s infinite ease-in-out; }
-        .spotlight-right { right: -5%; transform: rotate(-20deg); animation: swingRight 8s infinite ease-in-out; }
+        .spotlight-left { left: -5%; animation: swingLeft 8s infinite ease-in-out; }
+        .spotlight-right { right: -5%; animation: swingRight 8s infinite ease-in-out; }
 
         @keyframes swingLeft { 0%, 100% { transform: rotate(15deg); } 50% { transform: rotate(28deg); } }
         @keyframes swingRight { 0%, 100% { transform: rotate(-15deg); } 50% { transform: rotate(-28deg); } }
 
-        /* --- ละอองดวงดาวสีขาวระยิบระยับหนาแน่นชั้นหน้า (Glittering White Stars Layer) --- */
-        .white-stars { position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1; pointer-events: none; }
-        .star-particle { position: absolute; background-color: #ffffff; border-radius: 50%; animation: starTwinkle 2.5s infinite ease-in-out; opacity: 0; box-shadow: 0 0 8px rgba(255, 255, 255, 0.8); }
-        
-        .star-particle:nth-child(1) { top: 12%; left: 8%; width: 4px; height: 4px; animation-delay: 0s; }
-        .star-particle:nth-child(2) { top: 28%; left: 90%; width: 5px; height: 5px; animation-delay: 0.5s; }
-        .star-particle:nth-child(3) { top: 60%; left: 4%; width: 4px; height: 4px; animation-delay: 1s; }
-        .star-particle:nth-child(4) { top: 80%; left: 92%; width: 5px; height: 5px; animation-delay: 1.5s; }
-
-        @keyframes starTwinkle { 0%, 100% { transform: scale(0.3); opacity: 0; } 50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 12px rgba(255, 255, 255, 1); } }
-
-        /* --- หัวข้อเพจหลักสไตล์มงลง --- */
         .main-title {
+            font-family: 'Cinzel', serif;
             background: linear-gradient(135deg, #FFE8A3 0%, #C59B27 50%, #B38728 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-size: 32px;
             letter-spacing: 3px;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
+            text-align: center;
             text-transform: uppercase;
-            font-weight: bold;
         }
+
         .subtitle {
             color: #e0d9c5;
             font-size: 15px;
-            letter-spacing: 1px;
             margin-bottom: 40px;
+            text-align: center;
         }
-        /* --- สไตล์กล่องเนื้อหาหรูหรา (Bright Luxury Cards) --- */
+
         .profile-card, .project-card {
-            background: rgba(255, 254, 250, 0.93); 
-            backdrop-filter: blur(16px);
+            background: rgba(255, 254, 250, 0.95); 
+            backdrop-filter: blur(10px);
             border-radius: 12px; 
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4), 0 0 35px rgba(255, 223, 128, 0.15);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
             padding: 40px 35px;
             margin: 25px 0;
             border: 2px solid rgba(212, 175, 55, 0.5); 
-            transition: all 0.4s ease;
             position: relative;
+            box-sizing: border-box;
         }
-        /* กรอบลายเส้นสีทองด้านในแบบราชวงศ์ */
+
         .card-inner-frame {
             position: absolute;
             top: 10px; left: 10px; right: 10px; bottom: 10px;
@@ -125,125 +111,125 @@
                 linear-gradient(to right, #C59B27 12px, transparent 12px) top left,
                 linear-gradient(to bottom, #C59B27 12px, transparent 12px) top left,
                 linear-gradient(to left, #C59B27 12px, transparent 12px) top right,
-                linear-gradient(to bottom, #C59B27 12px, transparent 12px) top right,
-                linear-gradient(to right, #C59B27 12px, transparent 12px) bottom left,
-                linear-gradient(to top, #C59B27 12px, transparent 12px) bottom left,
-                linear-gradient(to left, #C59B27 12px, transparent 12px) bottom right,
-                linear-gradient(to top, #C59B27 12px, transparent 12px) bottom right;
+                linear-gradient(to bottom, #C59B27 12px, transparent 12px) top right;
             background-repeat: no-repeat;
             background-size: 16px 16px;
         }
 
-        .profile-card:hover, .project-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 215, 0, 1);
-            box-shadow: 0 25px 55px rgba(0, 0, 0, 0.5), 0 0 45px rgba(255, 215, 0, 0.35);
-        }
-        /* --- ส่วนของการจัดแต่งโปรไฟล์การ์ด --- */
-        .profile-card { text-align: center; padding: 45px 35px; }
-        
-        .profile-image-container {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
+        .profile-card { text-align: center; }
         .profile-card img {
-            width: 140px;
-            height: 140px;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid #C59B27;
-            box-shadow: 0 0 20px rgba(197, 155, 39, 0.4);
-            position: relative;
-            z-index: 2;
+            box-shadow: 0 0 15px rgba(197, 155, 39, 0.3);
+            margin-bottom: 15px;
         }
-        /* รัศมีแสงสีทองหลังรูปโปรไฟล์ */
-        .profile-image-container::after {
-            content: "";
-            position: absolute;
-            top: -5px; left: -5px; right: -5px; bottom: -5px;
-            border-radius: 50%;
-            border: 1px dashed rgba(212, 175, 55, 0.6);
-            animation: rotateGlow 20s linear infinite;
-        }
-        @keyframes rotateGlow { 100% { transform: rotate(360deg); } }
 
         .profile-card h2 {
+            font-family: 'Cinzel', serif;
             font-size: 24px;
             margin: 10px 0 25px 0;
-            background: linear-gradient(135deg, #8A640F 0%, #4a3305 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 1px;
-        }
-
-        .profile-info {
-            max-width: 450px;
-            margin: 0 auto;
-            text-align: left;
-        }
-        .profile-info p {
-            font-size: 16px;
-            line-height: 1.8;
-            margin: 12px 0;
-            color: #4a4235;
-            border-bottom: 1px dashed rgba(212, 175, 55, 0.15);
-            padding-bottom: 6px;
-        }
-        .profile-info p strong {
             color: #8A640F;
-            display: inline-block;
-            width: 110px;
-            letter-spacing: 0.5px;
         }
 
-        /* --- ส่วนของการจัดแต่งการ์ดผลงาน --- */
-        .project-card { text-align: left; }
-        
+        .profile-info { max-width: 450px; margin: 0 auto; text-align: left; }
+        .profile-info p { font-size: 16px; line-height: 1.8; margin: 12px 0; color: #4a4235; }
+        .profile-info p strong { color: #8A640F; display: inline-block; width: 110px; }
+
         .project-card h3 {
             font-size: 19px;
             margin-top: 0;
-            margin-bottom: 15px;
-            background: linear-gradient(135deg, #B38728 0%, #61460B 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            color: #61460B;
         }
 
-        .project-card p {
-            font-size: 15.5px;
-            line-height: 1.8;
-            color: #554b3d;
-            margin: 5px 0;
-        }
+        .project-card p { font-size: 15.5px; line-height: 1.8; color: #554b3d; }
 
-        /* ตกแต่งส่วนรายการ Skill */
-        .project-card ul {
-            margin: 15px 0 5px 0;
-            padding-left: 20px;
-        }
-        .project-card li {
-            font-size: 15.5px;
-            line-height: 2;
-            color: #554b3d;
-            list-style-type: none;
-            position: relative;
-        }
-        .project-card li::before {
-            content: "✦";
-            color: #C59B27;
-            position: absolute;
-            left: -18px;
-            font-size: 12px;
-        }
+        .project-card ul { margin: 15px 0 5px 0; padding-left: 20px; }
+        .project-card li { font-size: 15.5px; line-height: 2; color: #554b3d; list-style-type: none; position: relative; }
+        .project-card li::before { content: "✦"; color: #C59B27; position: absolute; left: -18px; }
 
-        /* --- ปุ่มสไตล์มงลงทรงพลัง --- */
+        .center-btn { text-align: center; margin-top: 30px; }
         .btn {
             display: inline-block;
-            margin-top: 20px;
             padding: 14px 45px;
             background: linear-gradient(135deg, #FFE8A3, #C59B27);
             color: #ffffff;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            text-decoration: none;
+            border-radius: 4px; 
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(197, 155, 39, 0.4);
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+
+<div class="spotlight-left"></div>
+<div class="spotlight-right"></div>
+
+<div class="container">
+    <h1 class="main-title">THE PORTFOLIO</h1>
+    <p class="subtitle">พื้นที่รวบรวมผลงาน ศักยภาพ และความภาคภูมิใจบนเส้นทางสู่ความสำเร็จ</p>
+
+    <!-- โปรไฟล์ -->
+    <div class="profile-card">
+        <div class="card-inner-frame"></div>
+        <img src="my-profile.jpg" alt="Profile Image">
+        <h2>อดิศร (Adisorn)</h2>
+        <div class="profile-info">
+            <p><strong>ชื่อเล่น :</strong> คิว</p>
+            <p><strong>ระดับชั้น :</strong> มัธยมศึกษาปีที่ 6 (Gifted Program)</p>
+            <p><strong>โรงเรียน :</strong> บ้านบึง "อุตสาหกรรมนุเคราะห์"</p>
+            <p><strong>อีเมล :</strong> igkueadisorn@gmail.com</p>
+            <p><strong>ความสนใจ :</strong> English Language & Technology</p>
+        </div>
+    </div>
+
+    <!-- ผลงานชิ้นที่ 1 -->
+    <div class="project-card">
+        <div class="card-inner-frame"></div>
+        <h3>🏆 1. โครงงาน / ชิ้นงานวิทยาศาสตร์คำนวณ</h3>
+        <p>เขียนอธิบายสั้น ๆ ว่าทำอะไร ได้เรียนรู้อะไรจากงานนี้บ้าง เช่น การประยุกต์ใช้ทักษะการคิดวิเคราะห์ และการแก้ไขปัญหาอย่างเป็นระบบในห้องเรียนพิเศษ</p>
+    </div>
+
+    <!-- ผลงานชิ้นที่ 2 -->
+    <div class="project-card">
+        <div class="card-inner-frame"></div>
+        <h3>⭐ 2. กิจกรรม / เกียรติบัตรที่ได้รับ</h3>
+        <p>การเข้าร่วมการประกวด ทักษะวิชาการ กิจกรรมที่โดดเด่นของโรงเรียน หรือรางวัลเกียรติบัตรต่าง ๆ ที่แสดงถึงความเป็นผู้นำและการพัฒนาตนเองอย่างต่อเนื่อง</p>
+    </div>
+
+    <!-- ผลงานชิ้นที่ 3 -->
+    <div class="project-card">
+        <div class="card-inner-frame"></div>
+        <h3>⚡ 3. ทักษะและความสามารถ (Skills)</h3>
+        <ul>
+            <li>Microsoft Word & Office Programs</li>
+            <li>Microsoft PowerPoint (Advanced Presentation)</li>
+            <li>HTML และ CSS เบื้องต้นสำหรับพัฒนาเว็บไซต์</li>
+            <li>การทำงานเป็นทีมและการสื่อสาร (Teamwork & Leadership)</li>
+        </ul>
+    </div>
+
+    <!-- ติดต่อ -->
+    <div class="project-card">
+        <div class="card-inner-frame"></div>
+        <h3>📞 ช่องทางการติดต่อ (Contact)</h3>
+        <p>Facebook : Adisorn Igq</p>
+        <p>Line ID : 111iden</p>
+        <p>โทรศัพท์ : 091 762 3472</p>
+    </div>
+
+    <div class="center-btn">
+        <a href="index.html" class="btn">🏠 กลับหน้าแรก</a>
+    </div>
+</div>
+
+</body>
+</html>
