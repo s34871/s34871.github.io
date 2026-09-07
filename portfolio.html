@@ -1,127 +1,256 @@
-```html
+<!-- นี่คือโครงสร้างหน้าเว็บทั้งหมด -->
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>แฟ้มสะสมงานของฉัน</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adisorn - Portfolio ✨</title>
+    <style>
+        /* ตั้งค่าพื้นหลังธีมอวกาศและทางช้างเผือกแบบมีมิติ */
+        body {
+            background: #020105 radial-gradient(circle at 50% 50%, #161224 0%, #05020a 80%, #000000 100%);
+            color: #2c2518; 
+            font-family: 'Cinzel', 'Playfair Display', 'Segoe UI', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            position: relative;
+            overflow-x: hidden;
+        }
 
-<style>
-body {
-    font-family: sans-serif;
-    background-color: #f4f7f6;
-    text-align: center;
-    padding: 30px;
-}
+        .container {
+            max-width: 750px;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2; /* ให้อยู่เหนือสปอตไลท์ */
+        }
 
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-}
+        /* --- ดวงดาวนับร้อยในอวกาศชั้นหลัง (Deep Space Background Stars) --- */
+        body::before, body::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+        }
+        body::before {
+            opacity: 0.5;
+            box-shadow: 
+                10vw 20vh #fff, 25vw 12vh #fff, 85vw 15vh #fff, 70vw 25vh #fff,
+                40vw 35vh #fff, 15vw 55vh #fff, 80vw 60vh #fff, 92vw 45vh #fff,
+                5vw 80vh #fff, 30vw 75vh #fff, 65vw 85vh #fff, 88vw 80vh #fff,
+                50vw 15vh #e2d2fe, 75vw 40vh #fff, 20vw 65vh #ffe8a3, 60vw 70vh #fff;
+        }
+        body::after {
+            opacity: 0.4;
+            box-shadow: 
+                18vw 8vh #fff, 32vw 28vh #fff, 78vw 8vh #fff, 62vw 38vh #fff,
+                45vw 68vh #fff, 12vw 42vh #fff, 88vw 52vh #fff, 95vw 12vh #fff,
+                8vw 92vh #fff, 24vw 88vh #fff, 55vw 92vh #fff, 82vw 95vh #fff,
+                38vw 50vh #fff, 68vw 18vh #fff, 3vw 68vh #fff, 48vw 82vh #fff;
+        }
 
-.project-card {
-    background: white;
-    padding: 20px;
-    margin: 20px 0;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    text-align: left;
-}
+        /* --- เอฟเฟกต์ไฟสปอตไลท์เวทีประกวด (Stage Spotlights) --- */
+        .spotlight-left, .spotlight-right {
+            position: absolute;
+            bottom: -5%;
+            width: 45vw;
+            height: 120vh;
+            background: linear-gradient(0deg, rgba(255, 235, 170, 0.2) 0%, rgba(255, 255, 255, 0.04) 60%, rgba(255, 255, 255, 0) 100%);
+            clip-path: polygon(45% 100%, 55% 100%, 100% 0%, 0% 0%); 
+            z-index: 1;
+            pointer-events: none;
+            transform-origin: bottom center;
+        }
+        .spotlight-left { left: -5%; transform: rotate(20deg); animation: swingLeft 8s infinite ease-in-out; }
+        .spotlight-right { right: -5%; transform: rotate(-20deg); animation: swingRight 8s infinite ease-in-out; }
 
-.profile-card {
-    background: white;
-    padding: 30px;
-    margin: 20px 0;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    text-align: center;
-}
+        @keyframes swingLeft { 0%, 100% { transform: rotate(15deg); } 50% { transform: rotate(28deg); } }
+        @keyframes swingRight { 0%, 100% { transform: rotate(-15deg); } 50% { transform: rotate(-28deg); } }
 
-.profile-card img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid #2c3e50;
-}
+        /* --- ละอองดวงดาวสีขาวระยิบระยับหนาแน่นชั้นหน้า (Glittering White Stars Layer) --- */
+        .white-stars { position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1; pointer-events: none; }
+        .star-particle { position: absolute; background-color: #ffffff; border-radius: 50%; animation: starTwinkle 2.5s infinite ease-in-out; opacity: 0; box-shadow: 0 0 8px rgba(255, 255, 255, 0.8); }
+        
+        .star-particle:nth-child(1) { top: 12%; left: 8%; width: 4px; height: 4px; animation-delay: 0s; }
+        .star-particle:nth-child(2) { top: 28%; left: 90%; width: 5px; height: 5px; animation-delay: 0.5s; }
+        .star-particle:nth-child(3) { top: 60%; left: 4%; width: 4px; height: 4px; animation-delay: 1s; }
+        .star-particle:nth-child(4) { top: 80%; left: 92%; width: 5px; height: 5px; animation-delay: 1.5s; }
 
-.btn {
-    display: inline-block;
-    background: #2c3e50;
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-top: 20px;
-}
+        @keyframes starTwinkle { 0%, 100% { transform: scale(0.3); opacity: 0; } 50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 12px rgba(255, 255, 255, 1); } }
 
-h1 {
-    color: #2c3e50;
-}
-</style>
+        /* --- หัวข้อเพจหลักสไตล์มงลง --- */
+        .main-title {
+            background: linear-gradient(135deg, #FFE8A3 0%, #C59B27 50%, #B38728 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 32px;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
 
-</head>
-<body>
+        .subtitle {
+            color: #e0d9c5;
+            font-size: 15px;
+            letter-spacing: 1px;
+            margin-bottom: 40px;
+        }
 
-<div class="container">
+        /* --- สไตล์กล่องเนื้อหาหรูหรา (Bright Luxury Cards) --- */
+        .profile-card, .project-card {
+            background: rgba(255, 254, 250, 0.93); 
+            backdrop-filter: blur(16px);
+            border-radius: 12px; 
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4), 0 0 35px rgba(255, 223, 128, 0.15);
+            padding: 40px 35px;
+            margin: 25px 0;
+            border: 2px solid rgba(212, 175, 55, 0.5); 
+            transition: all 0.4s ease;
+            position: relative;
+        }
 
-    <h1>📁 แฟ้มสะสมงาน (Portfolio)</h1>
-    <p>นี่คือพื้นที่รวบรวมผลงานและกิจกรรมที่ภูมิใจของฉัน</p>
+        /* กรอบลายเส้นสีทองด้านในแบบราชวงศ์ */
+        .card-inner-frame {
+            position: absolute;
+            top: 10px; left: 10px; right: 10px; bottom: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            border-radius: 8px;
+            pointer-events: none;
+        }
+        .card-inner-frame::before {
+            content: "";
+            position: absolute;
+            top: -4px; left: -4px; right: -4px; bottom: -4px;
+            background: 
+                linear-gradient(to right, #C59B27 12px, transparent 12px) top left,
+                linear-gradient(to bottom, #C59B27 12px, transparent 12px) top left,
+                linear-gradient(to left, #C59B27 12px, transparent 12px) top right,
+                linear-gradient(to bottom, #C59B27 12px, transparent 12px) top right,
+                linear-gradient(to right, #C59B27 12px, transparent 12px) bottom left,
+                linear-gradient(to top, #C59B27 12px, transparent 12px) bottom left,
+                linear-gradient(to left, #C59B27 12px, transparent 12px) bottom right,
+                linear-gradient(to top, #C59B27 12px, transparent 12px) bottom right;
+            background-repeat: no-repeat;
+            background-size: 16px 16px;
+        }
 
-    <!-- โปรไฟล์ -->
-    <div class="profile-card">
-        <img src="my-profile.jpg">
-        <h2>ชื่อ - นามสกุล</h2>
-        <p><strong>ชื่อเล่น:</strong> คิว </p>
-        <p><strong>ระดับชั้น:</strong> มัธยมศึกษาปีที่ 6 </p>
-        <p><strong>โรงเรียน:</strong> บ้านบึง"อุตสาหกรรมนุเคราะห์" </p>
-        <p><strong>อีเมล:</strong> igkueadisorn@gmail.com </p>
-        <p><strong>ความสนใจ:</strong> ภาษาอังกฤษ </p>
-    </div>
+        .profile-card:hover, .project-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 215, 0, 1);
+            box-shadow: 0 25px 55px rgba(0, 0, 0, 0.5), 0 0 45px rgba(255, 215, 0, 0.35);
+        }
 
-    <!-- ผลงานชิ้นที่ 1 -->
-    <div class="project-card">
-        <h3>1. โครงงาน/ชิ้นงานวิทยาศาสตร์คำนวณ</h3>
-        <p>
-            รายละเอียดชิ้นงาน :
-            เขียนอธิบายสั้น ๆ ว่าทำอะไร ได้เรียนรู้อะไรจากงานนี้บ้าง
-        </p>
-    </div>
+        /* --- ส่วนของการจัดแต่งโปรไฟล์การ์ด --- */
+        .profile-card { text-align: center; padding: 45px 35px; }
+        
+        .profile-image-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .profile-card img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #C59B27;
+            box-shadow: 0 0 20px rgba(197, 155, 39, 0.4);
+            position: relative;
+            z-index: 2;
+        }
+        /* รัศมีแสงสีทองหลังรูปโปรไฟล์ */
+        .profile-image-container::after {
+            content: "";
+            position: absolute;
+            top: -5px; left: -5px; right: -5px; bottom: -5px;
+            border-radius: 50%;
+            border: 1px dashed rgba(212, 175, 55, 0.6);
+            animation: rotateGlow 20s linear infinite;
+        }
+        @keyframes rotateGlow { 100% { transform: rotate(360deg); } }
 
-    <!-- ผลงานชิ้นที่ 2 -->
-    <div class="project-card">
-        <h3>2. กิจกรรม/เกียรติบัตรที่ได้รับ</h3>
-        <p>
-            รายละเอียด :
-            เข้าร่วมการประกวด กิจกรรมของโรงเรียน
-            หรือได้รับเกียรติบัตรต่าง ๆ
-        </p>
-    </div>
+        .profile-card h2 {
+            font-size: 24px;
+            margin: 10px 0 25px 0;
+            background: linear-gradient(135deg, #8A640F 0%, #4a3305 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
 
-    <!-- ผลงานชิ้นที่ 3 -->
-    <div class="project-card">
-        <h3>3. ทักษะและความสามารถ</h3>
-        <ul>
-            <li>Microsoft Word</li>
-            <li>Microsoft PowerPoint</li>
-            <li>HTML และ CSS เบื้องต้น</li>
-            <li>การทำงานเป็นทีม</li>
-        </ul>
-    </div>
+        .profile-info {
+            max-width: 450px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .profile-info p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin: 12px 0;
+            color: #4a4235;
+            border-bottom: 1px dashed rgba(212, 175, 55, 0.15);
+            padding-bottom: 6px;
+        }
+        .profile-info p strong {
+            color: #8A640F;
+            display: inline-block;
+            width: 110px;
+            letter-spacing: 0.5px;
+        }
 
-    <!-- ติดต่อ -->
-    <div class="project-card">
-        <h3>📞 ช่องทางการติดต่อ</h3>
-        <p>Facebook : Adisorn Igq </p>
-        <p>Line ID : 111iden </p>
-        <p>โทรศัพท์ : 091 762 3472 </p>
-    </div>
+        /* --- ส่วนของการจัดแต่งการ์ดผลงาน --- */
+        .project-card { text-align: left; }
+        
+        .project-card h3 {
+            font-size: 19px;
+            margin-top: 0;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #B38728 0%, #61460B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    <!-- ปุ่มกลับหน้าแรก -->
-    <a href="index.html" class="btn">🏠 กลับหน้าแรก</a>
+        .project-card p {
+            font-size: 15.5px;
+            line-height: 1.8;
+            color: #554b3d;
+            margin: 5px 0;
+        }
 
-</div>
+        /* ตกแต่งส่วนรายการ Skill */
+        .project-card ul {
+            margin: 15px 0 5px 0;
+            padding-left: 20px;
+        }
+        .project-card li {
+            font-size: 15.5px;
+            line-height: 2;
+            color: #554b3d;
+            list-style-type: none;
+            position: relative;
+        }
+        .project-card li::before {
+            content: "✦";
+            color: #C59B27;
+            position: absolute;
+            left: -18px;
+            font-size: 12px;
+        }
 
-</body>
-</html>
-```
+        /* --- ปุ่มสไตล์มงลงทรงพลัง --- */
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 45px;
+            background: linear-gradient(135deg, #FFE8A3, #C59B27);
+            color: #ffffff;
