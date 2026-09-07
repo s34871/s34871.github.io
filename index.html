@@ -19,50 +19,56 @@
             padding: 20px;
             box-sizing: border-box;
             position: relative;
-            overflow: hidden; /* ป้องกันไม่ให้ดาวทะลุหน้าจอ */
+            overflow: hidden; /* ป้องกันไม่ให้ประกายวิ้งทะลุหน้าจอ */
         }
 
-        /* --- ส่วนของแสงระยิบระยับ (Background Stars) --- */
-        .stars {
+        /* --- ส่วนของแสงวิ้งๆ ระยิบระยับ (Background Sparkles) --- */
+        .sparkles {
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
             width: 100vw;
             height: 100vh;
             z-index: 0;
-            pointer-events: none; /* ทำให้คลิกทะลุดาวไปได้ */
+            pointer-events: none; /* ทำให้คลิกทะลุได้ */
         }
 
-        .star {
+        .sparkle {
             position: absolute;
-            background-color: #FFFFFF;
-            border-radius: 50%;
-            animation: twinkle 2s infinite ease-in-out;
+            font-size: 24px;
+            user-select: none;
+            animation: twinkleSparkle 2.5s infinite ease-in-out;
             opacity: 0;
         }
 
-        /* ขนาดและตำแหน่งของดาวดวงต่างๆ */
-        .star:nth-child(1) { top: 15%; left: 10%; width: 6px; height: 6px; animation-delay: 0s; }
-        .star:nth-child(2) { top: 25%; left: 80%; width: 8px; height: 8px; animation-delay: 0.5s; background-color: #FFF3B0; }
-        .star:nth-child(3) { top: 70%; left: 15%; width: 5px; height: 5px; animation-delay: 1s; }
-        .star:nth-child(4) { top: 80%; left: 85%; width: 7px; height: 7px; animation-delay: 1.5s; background-color: #FFCAD4; }
-        .star:nth-child(5) { top: 40%; left: 25%; width: 9px; height: 9px; animation-delay: 0.3s; }
-        .star:nth-child(6) { top: 60%; left: 70%; width: 6px; height: 6px; animation-delay: 1.2s; }
-        .star:nth-child(7) { top: 10%; left: 50%; width: 7px; height: 7px; animation-delay: 0.7s; background-color: #E8AEFF; }
-        .star:nth-child(8) { top: 85%; left: 45%; width: 5px; height: 5px; animation-delay: 0.2s; }
+        /* กำหนดขนาดและตำแหน่งของวิ้งๆ แต่ละจุด */
+        .sparkle:nth-child(1) { top: 12%; left: 8%; font-size: 20px; animation-delay: 0s; }
+        .sparkle:nth-child(2) { top: 20%; left: 85%; font-size: 28px; animation-delay: 0.6s; }
+        .sparkle:nth-child(3) { top: 75%; left: 12%; font-size: 24px; animation-delay: 1.2s; }
+        .sparkle:nth-child(4) { top: 82%; left: 80%; font-size: 22px; animation-delay: 1.8s; }
+        .sparkle:nth-child(5) { top: 38%; left: 18%; font-size: 26px; animation-delay: 0.3s; }
+        .sparkle:nth-child(6) { top: 62%; left: 88%; font-size: 18px; animation-delay: 1.5s; }
+        .sparkle:nth-child(7) { top: 8%; left: 52%; font-size: 25px; animation-delay: 0.9s; }
+        .sparkle:nth-child(8) { top: 88%; left: 45%; font-size: 20px; animation-delay: 2.1s; }
 
-        /* เอฟเฟกต์การกระพริบระยิบระยับ */
-        @keyframes twinkle {
-            0%, 100% { transform: scale(0.3); opacity: 0; }
-            50% { transform: scale(1.2); opacity: 0.8; box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); }
+        /* แอนิเมชันการขยาย โต โต ละมุน และหมุนเล็กน้อย */
+        @keyframes twinkleSparkle {
+            0%, 100% { 
+                transform: scale(0) rotate(0deg); 
+                opacity: 0; 
+                filter: drop-shadow(0 0 0px rgba(255,255,255,0));
+            }
+            50% { 
+                transform: scale(1.2) rotate(15deg); 
+                opacity: 0.9; 
+                filter: drop-shadow(0 0 8px rgba(255, 223, 128, 0.8));
+            }
         }
 
         /* --- ปรับแต่งการ์ดและเนื้อหา --- */
         .card {
-            background: rgba(255, 255, 255, 0.9); /* ปรับให้โปร่งแสงนิดๆ เพื่อให้เห็นดาวลางๆ ข้างหลัง */
-            backdrop-filter: blur(5px); /* เอฟเฟกต์กระจกฝ้าละมุนๆ */
+            background: rgba(255, 255, 255, 0.85); /* ปรับให้เห็นวิ้งๆ ด้านหลังลางๆ */
+            backdrop-filter: blur(8px); /* เอฟเฟกต์กระจกฝ้านุ่มๆ */
             border-radius: 24px;
             box-shadow: 0 10px 25px rgba(255, 182, 185, 0.4);
             max-width: 480px; 
@@ -72,7 +78,7 @@
             border: 3px solid #FFCAD4;
             transition: transform 0.3s ease;
             position: relative;
-            z-index: 1; /* ให้การ์ดอยู่เหนือดาด */
+            z-index: 1; /* ให้การ์ดอยู่เหนือประกายวิ้ง */
         }
 
         .card:hover {
@@ -121,16 +127,16 @@
 </head>
 <body>
 
-<!-- โครงสร้างดวงดาวที่พื้นหลัง -->
-<div class="stars">
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
+<!-- โครงสร้างแสงวิ้งๆ ✨ -->
+<div class="sparkles">
+    <div class="sparkle">✨</div>
+    <div class="sparkle">✨</div>
+    <div class="sparkle">✨</div>
+    <div class="sparkle">✨</div>
+    <div class="sparkle">✨</div>
+    <div class="sparkle">✨</div>
+    <div class="sparkle">✨</div>
+    <div class="sparkle">✨</div>
 </div>
 
 <div class="card">
