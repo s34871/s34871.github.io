@@ -3,30 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to the Universe</title>
+    <title>The Universe Portfolio</title>
     <style>
         :root {
-            --bg-color: #faf9f6;
+            --bg-color: #faf9f6; /* ขาวออฟไวท์หรูหรา */
             --text-dark: #1a1a1a;
+            --gold-primary: #d4af37; /* ทองเมทัลลิก */
+            --gold-light: #f3e5ab;
             --gold-gradient: linear-gradient(135deg, #b38728, #fbf5b7, #daa520, #fbf5b7, #aa771c);
-            --gold-primary: #d4af37;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --border-gold: 1px solid rgba(212, 175, 55, 0.3);
         }
-
+        
         body {
-            font-family: 'Cinzel', 'Playfair Display', sans-serif;
+            font-family: 'Cinzel', 'Playfair Display', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-dark);
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
+            line-height: 1.6;
+            overflow-x: hidden;
             position: relative;
         }
 
-        /* เอฟเฟกต์แสงไฟระยิบระยับเต็มจอ (Sparkling Spotlight Background) */
+        /* เอฟเฟกต์แสงไฟระยิบระยับ (Sparkling Lights Background) */
         body::before {
             content: '';
             position: absolute;
@@ -36,63 +36,51 @@
             height: 100%;
             background-image: 
                 radial-gradient(circle, #fff 10%, transparent 20%),
-                radial-gradient(circle, rgba(255,245,183,0.9) 15%, transparent 25%),
-                radial-gradient(circle, rgba(212,175,55,0.2) 20%, transparent 40%);
-            background-size: 350px 350px, 450px 450px, 600px 600px;
-            background-position: 0 0, 50px 150px, 200px 300px;
-            animation: sparkle 15s linear infinite;
-            opacity: 0.6;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        /* แสงแฟลช/แสงสปอตไลท์ตรงกลางหน้าจอ */
-        .spotlight {
-            position: absolute;
-            width: 100vw;
-            height: 100vh;
-            background: radial-gradient(circle at center, rgba(255,255,255,0.8) 0%, rgba(250,249,246,0) 70%);
-            z-index: 2;
+                radial-gradient(circle, rgba(255,245,183,0.8) 15%, transparent 25%),
+                radial-gradient(circle, #fff 10%, transparent 20%);
+            background-size: 400px 400px, 500px 500px, 300px 300px;
+            background-position: 0 0, 40px 160px, 130px 270px;
+            animation: sparkle 20s linear infinite;
+            opacity: 0.4;
+            z-index: -1;
             pointer-events: none;
         }
 
         @keyframes sparkle {
-            0% { background-position: 0 0, 50px 150px, 200px 300px; }
-            100% { background-position: 350px 350px, 500px 600px, 800px 900px; }
+            0% { background-position: 0 0, 40px 160px, 130px 270px; }
+            100% { background-position: 400px 400px, 540px 660px, 430px 570px; }
         }
 
-        .welcome-container {
+        header {
+            background: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(250,249,246,0.8));
+            border-bottom: 2px solid transparent;
+            border-image: var(--gold-gradient) 1;
+            padding: 4rem 1rem;
             text-align: center;
-            z-index: 10;
-            padding: 2rem;
-            max-width: 600px;
-            animation: fadeIn 2s ease-out;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.05);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* โลโก้หรือสัญลักษณ์มงกุฎจำลอง */
-        .crown-icon {
-            font-size: 3rem;
-            color: var(--gold-primary);
-            margin-bottom: 1rem;
+        .profile-container {
+            position: relative;
             display: inline-block;
-            animation: pulse 2.5s infinite;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(212,175,55,0.4)); }
-            50% { transform: scale(1.05); filter: drop-shadow(0 0 20px rgba(212,175,55,0.8)); }
-            100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(212,175,55,0.4)); }
+        /* แสงออร่ารอบรูปโปรไฟล์ */
+        .profile-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            background-image: var(--gold-gradient);
+            background-clip: border-box;
+            object-fit: cover;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
         }
 
         h1 {
-            font-size: 3rem;
-            letter-spacing: 4px;
-            margin: 0 0 1rem 0;
+            margin: 1.5rem 0 0.5rem 0;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -100,88 +88,224 @@
             font-weight: 700;
         }
 
-        p {
-            font-size: 1.2rem;
+        .subtitle {
+            color: var(--text-dark);
+            font-size: 1.1rem;
             letter-spacing: 3px;
             text-transform: uppercase;
-            color: #555;
-            margin-bottom: 3rem;
+            margin-bottom: 1.5rem;
             font-weight: 300;
         }
 
-        /* ปุ่มกด Grand Entrance พร้อมเอฟเฟกต์ Shimmer แสงพาดผ่าน */
-        .enter-btn {
-            position: relative;
-            display: inline-block;
-            padding: 1.2rem 3.5rem;
-            font-family: 'Cinzel', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 700;
+        .social-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+            border-bottom: 1px solid transparent;
+        }
+
+        .social-links a:hover {
+            color: #b38728;
+            border-bottom: 1px solid #b38728;
+        }
+
+        main {
+            max-width: 950px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 1.8rem;
             letter-spacing: 2px;
             text-transform: uppercase;
+            margin-bottom: 2rem;
+            position: relative;
+            color: #aa771c;
+        }
+
+        /* เส้นใต้หรูหราแบบมีประกายตรงกลาง */
+        h2::after {
+            content: '✦';
+            display: block;
+            font-size: 1rem;
+            color: var(--gold-primary);
+            margin-top: 0.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.02);
+            transition: all 0.4s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold-primary);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.15);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            margin-bottom: 0.75rem;
+            font-size: 1.3rem;
+        }
+
+        .card h3 a {
+            color: var(--text-dark);
             text-decoration: none;
-            color: white;
-            background: linear-gradient(135deg, #b38728, #daa520, #aa771c);
-            border: none;
+            transition: color 0.3s;
+        }
+
+        .card h3 a:hover {
+            color: var(--gold-primary);
+        }
+
+        .card p {
+            color: #555;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, rgba(251,245,119,0.15), rgba(212,175,55,0.15));
+            color: #aa771c;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 0.3rem 0.8rem;
             border-radius: 4px;
-            cursor: pointer;
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
-            overflow: hidden;
-            transition: all 0.3s ease;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
         }
 
-        /* ตัวสร้างแสงวิ่งวาบพาดผ่านปุ่ม */
-        .enter-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255, 255, 255, 0.6),
-                transparent
-            );
-            transition: none;
+        .skills-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
-        /* อนิเมชันแสงวิ่งเมื่อโหลดหน้าเว็บและวนลูปซ้ำ */
-        .enter-btn::before {
-            animation: shimmer 3s infinite;
+        .skill-badge {
+            background-color: white;
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 500;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.02);
+            transition: all 0.3s;
         }
 
-        @keyframes shimmer {
-            0% { left: -100%; }
-            30% { left: 100%; }
-            100% { left: 100%; }
+        .skill-badge:hover {
+            background: var(--gold-gradient);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
         }
 
-        .enter-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.6);
-            letter-spacing: 4px;
+        #about p {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: #444;
         }
 
-        .enter-btn:active {
-            transform: translateY(-1px);
+        footer {
+            text-align: center;
+            padding: 3rem;
+            color: #777;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            background-color: white;
+            letter-spacing: 1px;
         }
     </style>
+    <!-- โหลดฟอนต์แนวหรูหรามาใช้งาน -->
     <link href="https://googleapis.com" rel="stylesheet">
 </head>
 <body>
 
-    <div class="spotlight"></div>
+    <header>
+        <div class="profile-container">
+            <!-- เปลี่ยน URL รูปภาพมงกุฎหรือรูปของคุณตรงนี้ -->
+            <img src="https://unsplash.com" alt="Your Portrait" class="profile-img">
+        </div>
+        <h1>Confidently Beautiful</h1>
+        <p class="subtitle">Your Name &bull; Portfolio</p>
+        <div class="social-links">
+            <a href="#" target="_blank">GitHub</a>
+            <a href="#" target="_blank">LinkedIn</a>
+            <a href="#">Contact</a>
+        </div>
+    </header>
 
-    <div class="welcome-container">
-        <div class="crown-icon">✦ 👑 ✦</div>
-        <h1>The Universe</h1>
-        <p>Is Calling You</p>
-        
-        <!-- ลิงก์ไปยังหน้าพอร์ตโฟลิโอของคุณ (เปลี่ยนชื่อไฟล์ตามที่คุณตั้งไว้ได้เลยครับ) -->
-        <a href="index.html" class="enter-btn">Grand Entrance</a>
-    </div>
+    <main>
+        <section id="about">
+            <h2>The Journey</h2>
+            <p>"ความงดงามที่แท้จริงคือความมั่นใจและศักยภาพ" ยินดีต้อนรับสู่พอร์ตโฟลิโอของฉัน ที่ซึ่งความตั้งใจ เทคโนโลยี และความคิดสร้างสรรค์มาบรรจบกันเพื่อสร้างสรรค์ผลงานอันทรงคุณค่า</p>
+        </section>
 
-</body>
-</html>
+        <section id="projects">
+            <h2>Masterpieces</h2>
+            <div class="grid">
+                <!-- โปรเจกต์ที่ 1 -->
+                <div class="card">
+                    <h3><a href="#" target="_blank">👑 Project Golden Crown</a></h3>
+                    <p>ระบบบริหารจัดการและจัดการข้อมูลแอปพลิเคชันระดับพรีเมียม ตอบโจทย์การใช้งานที่ลื่นไหลและการแสดงผลที่งดงาม</p>
+                    <div class="tags">
+                        <span class="tag">NEXT.JS</span>
+                        <span class="tag">TAILWIND</span>
+                        <span class="tag">SUPABASE</span>
+                    </div>
+                </div>
+
+                <!-- โปรเจกต์ที่ 2 -->
+                <div class="card">
+                    <h3><a href="#" target="_blank">✨ Universe Analytics</a></h3>
+                    <p>แพลตฟอร์มวิเคราะห์ข้อมูลเชิงลึกที่มาพร้อม Dashboard สรุปผลความงามของตัวเลขและสถิติอย่างแม่นยำ</p>
+                    <div class="tags">
+                        <span class="tag">PYTHON</span>
+                        <span class="tag">REACT</span>
+                        <span class="tag">D3.JS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Core Expertise</h2>
+            <div class="skills-container">
+                <div class="skill-badge">Branding & Design</div>
+                <div class="skill-badge">Frontend Development</div>
+                <div class="skill-badge">Creative Directing</div>
+                <div class="skill-badge">Public Speaking</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
