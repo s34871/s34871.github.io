@@ -1,31 +1,328 @@
-<!-- นี่คือโครงสร้างหน้าเว็บทั้งหมด -->
 <!DOCTYPE html>
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<title>หน้าแนะนำตัวของฉัน</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adisorn | Portfolio</title>
+
 <style>
-body {
-background-color: #FFB6B9; color: #333;
-text-align: center; padding: 50px;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI,Tahoma,sans-serif;
 }
-.card {
-background: white; border-radius: 10px;
-box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-max-width: 500px; margin: 0 auto; padding: 30px;
+
+html{
+    scroll-behavior:smooth;
 }
-h1 { color: #2c3e50; }
-p { font-size: 18px; line-height: 1.6; }
+
+body{
+    background:#f5f7fb;
+    color:#333;
+}
+
+/* ===== Header ===== */
+
+header{
+    background:linear-gradient(135deg,#4F46E5,#7C3AED);
+    color:white;
+    text-align:center;
+    padding:80px 20px;
+}
+
+header img{
+    width:160px;
+    height:160px;
+    border-radius:50%;
+    object-fit:cover;
+    border:5px solid white;
+    margin-bottom:20px;
+}
+
+header h1{
+    font-size:42px;
+}
+
+header p{
+    margin-top:10px;
+    font-size:20px;
+    opacity:.9;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:25px;
+    padding:12px 28px;
+    background:white;
+    color:#4F46E5;
+    text-decoration:none;
+    border-radius:30px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+}
+
+/* ===== Section ===== */
+
+section{
+    max-width:1100px;
+    margin:auto;
+    padding:70px 20px;
+}
+
+h2{
+    text-align:center;
+    color:#4F46E5;
+    margin-bottom:40px;
+    font-size:34px;
+}
+
+/* ===== About ===== */
+
+.about{
+    text-align:center;
+    font-size:18px;
+    line-height:1.8;
+}
+
+/* ===== Skills ===== */
+
+.skills{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:15px;
+}
+
+.skill{
+    background:white;
+    padding:15px 25px;
+    border-radius:30px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+/* ===== Projects ===== */
+
+.projects{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#666;
+}
+
+.card a{
+    display:inline-block;
+    margin-top:15px;
+    color:#4F46E5;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/* ===== Contact ===== */
+
+.contact{
+    text-align:center;
+}
+
+.contact a{
+    color:#4F46E5;
+    text-decoration:none;
+}
+
+/* ===== Footer ===== */
+
+footer{
+    background:#222;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+/* ===== Responsive ===== */
+
+@media(max-width:600px){
+
+header h1{
+    font-size:32px;
+}
+
+header p{
+    font-size:18px;
+}
+
+}
 </style>
+
 </head>
+
 <body>
-<div class="card">
-<h1>ยินดีต้อนรับสู่โปรไฟล์ของฉัน 👋</h1>
-<p>สวัสดีค่ะ! ฉันชื่อ <strong>อดิศร (Adisorn)</strong></p>
-<p>ขณะนี้กำลังศึกษาอยู่ห้องเรียนพิเศษGifted</p>
-<p>นี่คือเว็บไซต์แรกของฉันที่โฮสต์บน GitHub Pages!</p>
-  <!-- ดูผลงาน -->
-<a href="portfolio.html" class="btn">หน้าถัดไป</a>
+
+<header>
+
+<img src="https://avatars.githubusercontent.com/u/9919?s=200&v=4" alt="Profile">
+
+<h1>Adisorn</h1>
+
+<p>💻 Student • Gifted Program • Future Developer</p>
+
+<a href="#projects" class="btn">ดูผลงาน</a>
+
+</header>
+
+<section>
+
+<h2>เกี่ยวกับฉัน</h2>
+
+<div class="about">
+
+สวัสดีครับ ผมชื่อ <b>อดิศร</b><br><br>
+
+กำลังศึกษาในห้องเรียนพิเศษ Gifted
+สนใจด้านการพัฒนาเว็บไซต์ การเขียนโปรแกรม
+และเทคโนโลยีใหม่ ๆ
+
 </div>
+
+</section>
+
+<section>
+
+<h2>ทักษะ</h2>
+
+<div class="skills">
+
+<div class="skill">HTML</div>
+
+<div class="skill">CSS</div>
+
+<div class="skill">JavaScript</div>
+
+<div class="skill">Python</div>
+
+<div class="skill">GitHub</div>
+
+<div class="skill">Canva</div>
+
+</div>
+
+</section>
+
+<section id="projects">
+
+<h2>ผลงาน</h2>
+
+<div class="projects">
+
+<div class="card">
+
+<img src="https://picsum.photos/600/400?1">
+
+<div class="card-content">
+
+<h3>Portfolio Website</h3>
+
+<p>เว็บไซต์แนะนำตัวที่สร้างด้วย HTML และ CSS</p>
+
+<a href="#">ดูรายละเอียด →</a>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://picsum.photos/600/400?2">
+
+<div class="card-content">
+
+<h3>GitHub Pages</h3>
+
+<p>เว็บไซต์ที่เผยแพร่ผ่าน GitHub Pages</p>
+
+<a href="#">ดูรายละเอียด →</a>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://picsum.photos/600/400?3">
+
+<div class="card-content">
+
+<h3>Mini Project</h3>
+
+<p>โครงงานด้านการเขียนโปรแกรม</p>
+
+<a href="#">ดูรายละเอียด →</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>ติดต่อ</h2>
+
+<div class="contact">
+
+📧 Email :
+<a href="mailto:your@email.com">your@email.com</a>
+
+<br><br>
+
+🐙 GitHub :
+<a href="https://github.com/USERNAME" target="_blank">
+github.com/USERNAME
+</a>
+
+</div>
+
+</section>
+
+<footer>
+
+© 2026 Adisorn | Portfolio
+
+</footer>
+
 </body>
 </html>
