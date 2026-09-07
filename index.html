@@ -18,11 +18,51 @@
             margin: 0;
             padding: 20px;
             box-sizing: border-box;
+            position: relative;
+            overflow: hidden; /* ป้องกันไม่ให้ดาวทะลุหน้าจอ */
         }
 
-        /* ปรับแต่งการ์ดให้น่ารัก ละมุนตา */
+        /* --- ส่วนของแสงระยิบระยับ (Background Stars) --- */
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none; /* ทำให้คลิกทะลุดาวไปได้ */
+        }
+
+        .star {
+            position: absolute;
+            background-color: #FFFFFF;
+            border-radius: 50%;
+            animation: twinkle 2s infinite ease-in-out;
+            opacity: 0;
+        }
+
+        /* ขนาดและตำแหน่งของดาวดวงต่างๆ */
+        .star:nth-child(1) { top: 15%; left: 10%; width: 6px; height: 6px; animation-delay: 0s; }
+        .star:nth-child(2) { top: 25%; left: 80%; width: 8px; height: 8px; animation-delay: 0.5s; background-color: #FFF3B0; }
+        .star:nth-child(3) { top: 70%; left: 15%; width: 5px; height: 5px; animation-delay: 1s; }
+        .star:nth-child(4) { top: 80%; left: 85%; width: 7px; height: 7px; animation-delay: 1.5s; background-color: #FFCAD4; }
+        .star:nth-child(5) { top: 40%; left: 25%; width: 9px; height: 9px; animation-delay: 0.3s; }
+        .star:nth-child(6) { top: 60%; left: 70%; width: 6px; height: 6px; animation-delay: 1.2s; }
+        .star:nth-child(7) { top: 10%; left: 50%; width: 7px; height: 7px; animation-delay: 0.7s; background-color: #E8AEFF; }
+        .star:nth-child(8) { top: 85%; left: 45%; width: 5px; height: 5px; animation-delay: 0.2s; }
+
+        /* เอฟเฟกต์การกระพริบระยิบระยับ */
+        @keyframes twinkle {
+            0%, 100% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.2); opacity: 0.8; box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); }
+        }
+
+        /* --- ปรับแต่งการ์ดและเนื้อหา --- */
         .card {
-            background: #FFFFFF; 
+            background: rgba(255, 255, 255, 0.9); /* ปรับให้โปร่งแสงนิดๆ เพื่อให้เห็นดาวลางๆ ข้างหลัง */
+            backdrop-filter: blur(5px); /* เอฟเฟกต์กระจกฝ้าละมุนๆ */
             border-radius: 24px;
             box-shadow: 0 10px 25px rgba(255, 182, 185, 0.4);
             max-width: 480px; 
@@ -31,28 +71,26 @@
             text-align: center;
             border: 3px solid #FFCAD4;
             transition: transform 0.3s ease;
+            position: relative;
+            z-index: 1; /* ให้การ์ดอยู่เหนือดาด */
         }
 
-        /* เอฟเฟกต์เวลาเอาเมาส์ไปวางบนการ์ด */
         .card:hover {
             transform: translateY(-5px);
         }
 
-        /* หัวข้อหลัก */
         h1 { 
             color: #98719E; 
             font-size: 26px;
             margin-bottom: 25px;
         }
 
-        /* ข้อความทั่วไป */
         p { 
             font-size: 16px; 
             line-height: 1.8;
             margin: 12px 0;
         }
 
-        /* ไฮไลต์ข้อความสำคัญ */
         strong {
             color: #FF7B94;
             background: #FFEAEF;
@@ -60,7 +98,6 @@
             border-radius: 8px;
         }
 
-        /* ตกแต่งปุ่ม "หน้าถัดไป" ให้น่ารักน่ากด */
         .btn {
             display: inline-block;
             margin-top: 25px;
@@ -75,7 +112,6 @@
             transition: all 0.3s ease;
         }
 
-        /* เอฟเฟกต์เวลาเอาเมาส์ไปวางบนปุ่ม */
         .btn:hover {
             background: linear-gradient(135deg, #FF7B94, #FFB6B9);
             transform: scale(1.05);
@@ -85,10 +121,22 @@
 </head>
 <body>
 
+<!-- โครงสร้างดวงดาวที่พื้นหลัง -->
+<div class="stars">
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+</div>
+
 <div class="card">
     <h1>ยินดีต้อนรับสู่โปรไฟล์ของฉัน 👋✨</h1>
     <p>สวัสดีค่ะ! ฉันชื่อ <strong>อดิศร (Adisorn)</strong></p>
-    <p>กำลังศึกษาอยู่ห้องเรียนพิเศษ 🎀 <strong>Gifted</strong></p>
+    <p>กำลังศึกษาอยู่ห้องเรียนพิเศษ <strong>Gifted</strong></p>
     <p>นี่คือเว็บไซต์แรกของฉันที่โฮสต์บน GitHub Pages! 🚀</p>
     
     <!-- ดูผลงาน -->
