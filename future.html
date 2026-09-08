@@ -6,31 +6,46 @@
     <title>ความสนใจศึกษาต่อ - อดิศร</title>
     <style>
         :root { --bg-color: #faf9f6; --text-dark: #1a1a1a; --gold-primary: #d4af37; --gold-gradient: linear-gradient(135deg, #b38728, #fbf5b7, #daa520, #fbf5b7, #aa771c); --card-bg: rgba(255, 255, 255, 0.96); --border-gold: 1px solid rgba(212, 175, 55, 0.35); }
-        body { background-color: var(--bg-color); color: var(--text-dark); text-align: center; padding: 120px 20px 50px 20px; font-family: 'Cinzel', 'Playfair Display', sans-serif; margin: 0; min-height: 100vh; display: flex; justify-content: center; align-items: center; position: relative; overflow-x: hidden; }
-        body::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, #fff 15%, transparent 25%) 0 0 / 350px 350px, linear-gradient(115deg, rgba(212,175,55,0.12) 25%, transparent 25%) 0 0 / 40px 70px, linear-gradient(245deg, rgba(212,175,55,0.12) 25%, transparent 25%) 0 0 / 40px 70px; animation: bgMove 25s linear infinite; opacity: 0.95; z-index: 1; pointer-events: none; }
-        @keyframes bgMove { 0% { background-position: 0 0, 0 0, 0 0; } 100% { background-position: 350px 350px, 40px 70px, 40px 70px; } }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            text-align: center;
+            padding: 120px 20px 50px 20px;
+            font-family: 'Cinzel', 'Playfair Display', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+        }
 
         .navbar { position: fixed; top: 0; left: 0; width: 100%; background: rgba(255, 255, 255, 0.92); border-bottom: 1px solid rgba(212, 175, 55, 0.3); backdrop-filter: blur(10px); z-index: 1000; display: flex; justify-content: center; gap: 15px; padding: 15px 0; box-shadow: 0 5px 20px rgba(0,0,0,0.03); }
         .nav-link { color: #aa771c; text-decoration: none; font-weight: 700; font-size: 0.95rem; padding: 8px 16px; border-radius: 30px; transition: all 0.3s ease; }
         .nav-link:hover, .nav-link.active { background: var(--gold-gradient); color: white; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); }
 
-        .card { background: var(--card-bg); border-radius: 20px; box-shadow: 0 20px 50px rgba(212, 175, 55, 0.18); max-width: 620px; margin: 0 auto; padding: 50px 40px; border: var(--border-gold); position: relative; z-index: 10; backdrop-filter: blur(8px); }
-        h1 { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 1.9rem; font-weight: 700; margin-bottom: 25px; }
-        p { font-size: 18px; line-height: 1.8; color: #333; margin: 15px 0; text-align: left; }
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.18);
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 55px 70px;
+            border: var(--border-gold);
+        }
+        h1 { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.1rem; font-weight: 700; margin-bottom: 25px; }
+        p { font-size: 19px; line-height: 1.85; color: #333; margin: 15px 0; text-align: left; }
 
         /* 🎓 รายการคณะแบบไล่ลงมา พร้อมเหตุผลประกอบ */
         .faculty-list {
             display: flex;
             flex-direction: column;
-            gap: 16px;
-            margin-top: 20px;
+            gap: 18px;
+            margin-top: 24px;
             text-align: left;
         }
         .faculty-item {
             background: linear-gradient(135deg, rgba(251,245,119,0.12), rgba(212,175,55,0.08));
             border: 1px solid rgba(212, 175, 55, 0.3);
             border-radius: 14px;
-            padding: 16px 20px;
+            padding: 22px 28px;
             transition: all 0.3s ease;
         }
         .faculty-item:hover {
@@ -40,21 +55,21 @@
         }
         .faculty-name {
             color: #aa771c;
-            font-size: 1.05rem;
+            font-size: 1.2rem;
             font-weight: 700;
             display: flex;
             align-items: center;
             gap: 8px;
         }
         .faculty-reason {
-            font-size: 0.95rem;
-            line-height: 1.6;
+            font-size: 1.05rem;
+            line-height: 1.75;
             color: #444;
-            margin: 8px 0 0 0;
+            margin: 10px 0 0 0;
             font-family: 'Sarabun', sans-serif;
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 600px) {
             .card { padding: 35px 22px; }
         }
     </style>
@@ -69,20 +84,20 @@
     </nav>
     <div class="card">
         <h1>✦ ความสนใจศึกษาต่อ</h1>
-        <p>มุ่งมั่นที่จะนำความรู้และศักยภาพด้านวิทยาศาสตร์-คณิตศาสตร์จากห้องเรียน Gifted ไปต่อยอดในระดับอุดมศึกษาในสาขาที่สนใจ:</p>
+        <p>มุ่งมั่นที่จะนำความรู้และศักยภาพไปต่อยอดในระดับอุดมศึกษาในสาขาที่สนใจ:</p>
 
         <div class="faculty-list">
             <div class="faculty-item">
-                <div class="faculty-name">🥇 คณะวิศวกรรมศาสตร์</div>
-                <p class="faculty-reason">(ใส่เหตุผลตรงนี้ เช่น สนใจด้านการออกแบบและแก้ปัญหาเชิงระบบ ชอบวิชาคณิตศาสตร์และฟิสิกส์ อยากนำความรู้ไปพัฒนานวัตกรรม)</p>
+                <div class="faculty-name">🥇 คณะมนุษยศาสตร์</div>
+                <p class="faculty-reason">ดิฉันตั้งใจศึกษาต่อในหลักสูตรศึกษาศาสตรบัณฑิต คณะมนุษยศาสตร์เพราะดิฉันอยากเข้าใจเพิ่มเติมเกี่ยวกับภาษาให้ถึงรากของภาษาและวัฒนธรรมเพื่อใช้ต่อยอดในการประกอบอาชีพและส่งต่อความรู้ให้ผู้อื่นต่อไป</p>
             </div>
             <div class="faculty-item">
-                <div class="faculty-name">🥈 คณะวิทยาศาสตร์</div>
-                <p class="faculty-reason">(ใส่เหตุผลตรงนี้ เช่น ชื่นชอบการทดลองและค้นคว้าหาคำตอบ อยากศึกษาต่อเชิงลึกด้านวิทยาศาสตร์บริสุทธิ์)</p>
+                <div class="faculty-name">🥈 คณะศึกษาศาสตร์</div>
+                <p class="faculty-reason">ดิฉันตั้งใจศึกษาต่อในคณะศึกษาศาสตร์ เนื่องจากดิฉันรักเด็ก และจะทุ่มเทแรงกายและแรงใจเพื่อดูแลและให้ความรู้</p>
             </div>
             <div class="faculty-item">
-                <div class="faculty-name">🥉 คณะเทคโนโลยีสารสนเทศ</div>
-                <p class="faculty-reason">(ใส่เหตุผลตรงนี้ เช่น สนใจด้านคอมพิวเตอร์และการเขียนโปรแกรม อยากพัฒนาแอปพลิเคชันหรือระบบที่เป็นประโยชน์ต่อสังคม)</p>
+                <div class="faculty-name">🥉 คณะนิเทศศาสตร์</div>
+                <p class="faculty-reason">ดิฉันชื่นชอบการแสดงและการทำงานเป็นทีม เพื่อสร้างผลงานที่อิมแพ็คต่อสังคมไทย และเมืองทองธานีมีคอสมิค</p>
             </div>
         </div>
     </div>
