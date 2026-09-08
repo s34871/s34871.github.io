@@ -133,7 +133,7 @@
         }
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-        .profile-img {proflie.jpg
+        .profile-img {
             width: 100%;
             height: 100%;
             border-radius: 50%;
@@ -206,6 +206,30 @@
         .menu-btn .arrow { transition: transform 0.3s; }
         .menu-btn:hover .arrow { transform: translateX(6px); }
 
+        /* 📞 ช่องทางติดต่อ */
+        .contact-title {
+            color: var(--gold-light);
+            font-size: 0.95rem; letter-spacing: 2px; margin: 40px 0 16px 0;
+            text-transform: uppercase; font-weight: 600;
+        }
+        .contact-row {
+            display: flex; flex-wrap: wrap; justify-content: center;
+            gap: 14px; width: 100%; max-width: 750px;
+        }
+        .contact-item {
+            background: var(--card-bg); border: var(--border-gold); border-radius: 50px;
+            padding: 12px 24px; display: flex; align-items: center; gap: 10px;
+            font-size: 0.95rem; font-weight: 600; color: #aa771c;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: all 0.3s ease; text-decoration: none;
+        }
+        .contact-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--gold-primary);
+            box-shadow: 0 12px 28px rgba(212, 175, 55, 0.35);
+        }
+        .contact-item .icon { font-size: 1.1rem; }
+
         footer {
             margin-top: 50px; z-index: 10; position: relative;
             color: rgba(253, 246, 216, 0.5); font-size: 0.85rem; letter-spacing: 1px;
@@ -242,8 +266,7 @@
     <div class="main-container">
         <!-- โซนรูปภาพโปรไฟล์พร้อมกรอบสีทองอร่าม -->
         <div class="profile-frame">
-            <!-- ⚠️ คำแนะนำ: เปลี่ยนลิงก์รูปภาพตรง src="..." เป็นลิงก์รูปโปรไฟล์ของคุณอดิศร -->
-            <img src="https://github.com/user-attachments/assets/ca49ae07-a56e-428c-b3f0-853ce34d2296" alt="อดิศร ทวีโชคสิริกุล" class="profile-img">
+            <img src="profile.jpg" alt="อดิศร ทวีโชคสิริกุล" class="profile-img">
         </div>
 
         <div class="crown-logo">✦ 👑 ✦</div>
@@ -260,6 +283,15 @@
             <a href="education.html" class="menu-btn"><span>🎓 ประวัติการศึกษา</span> <span class="arrow">⟶</span></a>
             <a href="activities.html" class="menu-btn"><span>✨ กิจกรรมและผลงาน</span> <span class="arrow">⟶</span></a>
             <a href="future.html" class="menu-btn"><span>✦ ความสนใจศึกษาต่อ</span> <span class="arrow">⟶</span></a>
+        </div>
+
+        <!-- ช่องทางติดต่อ -->
+        <div class="contact-title">✦ ช่องทางติดต่อ ✦</div>
+        <div class="contact-row">
+            <!-- ⚠️ เปลี่ยนเบอร์โทร, ไอดี Instagram และอีเมลตรงนี้ -->
+            <a href="tel:0000000000" class="contact-item"><span class="icon">📞</span> 0X-XXXX-XXXX</a>
+            <a href="https://instagram.com/yourusername" target="_blank" class="contact-item"><span class="icon">📸</span> @yourusername</a>
+            <a href="mailto:youremail@example.com" class="contact-item"><span class="icon">✉️</span> youremail@example.com</a>
         </div>
 
         <footer>✦ PORTFOLIO 2026 ✦</footer>
@@ -281,8 +313,5 @@
         }
         setInterval(createSparkle, 130);
     </script>
-    <a href="tel:0000000000" ...>0X-XXXX-XXXX</a>
-<a href="https://instagram.com/yourusername" ...>@yourusername</a>
-<a href="mailto:youremail@example.com" ...>youremail@example.com</a>
 </body>
 </html>
