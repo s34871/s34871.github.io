@@ -2,20 +2,101 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ประวัติการศึกษา - อดิศร</title>
     <style>
         :root { --bg-color: #faf9f6; --text-dark: #1a1a1a; --gold-primary: #d4af37; --gold-gradient: linear-gradient(135deg, #b38728, #fbf5b7, #daa520, #fbf5b7, #aa771c); --card-bg: rgba(255, 255, 255, 0.96); --border-gold: 1px solid rgba(212, 175, 55, 0.35); }
-        body { background-color: var(--bg-color); color: var(--text-dark); text-align: center; padding: 120px 20px 50px 20px; font-family: 'Cinzel', 'Playfair Display', sans-serif; margin: 0; min-height: 100vh; display: flex; justify-content: center; align-items: center; position: relative; overflow-x: hidden; }
-        body::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, #fff 15%, transparent 25%) 0 0 / 350px 350px, linear-gradient(115deg, rgba(212,175,55,0.12) 25%, transparent 25%) 0 0 / 40px 70px, linear-gradient(245deg, rgba(212,175,55,0.12) 25%, transparent 25%) 0 0 / 40px 70px; animation: bgMove 25s linear infinite; opacity: 0.95; z-index: 1; pointer-events: none; }
-        @keyframes bgMove { 0% { background-position: 0 0, 0 0, 0 0; } 100% { background-position: 350px 350px, 40px 70px, 40px 70px; } }
-        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            text-align: center;
+            padding: 120px 20px 50px 20px;
+            font-family: 'Cinzel', 'Playfair Display', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+        }
+
         .navbar { position: fixed; top: 0; left: 0; width: 100%; background: rgba(255, 255, 255, 0.92); border-bottom: 1px solid rgba(212, 175, 55, 0.3); backdrop-filter: blur(10px); z-index: 1000; display: flex; justify-content: center; gap: 15px; padding: 15px 0; box-shadow: 0 5px 20px rgba(0,0,0,0.03); }
         .nav-link { color: #aa771c; text-decoration: none; font-weight: 700; font-size: 0.95rem; padding: 8px 16px; border-radius: 30px; transition: all 0.3s ease; }
         .nav-link:hover, .nav-link.active { background: var(--gold-gradient); color: white; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); }
 
-        .card { background: var(--card-bg); border-radius: 20px; box-shadow: 0 20px 50px rgba(212, 175, 55, 0.18); max-width: 550px; margin: 0 auto; padding: 50px 40px; border: var(--border-gold); position: relative; z-index: 10; backdrop-filter: blur(8px); }
-        h1 { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 1.9rem; font-weight: 700; margin-bottom: 25px; }
-        p { font-size: 18px; line-height: 1.8; color: #333; margin: 15px 0; text-align: left; }
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.18);
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 55px 70px;
+            border: var(--border-gold);
+        }
+        h1 { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.1rem; font-weight: 700; margin-bottom: 40px; }
+
+        /* 🔗 ไทม์ไลน์การศึกษาแบบลูกโซ่ */
+        .edu-chain {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .edu-link {
+            display: flex;
+            gap: 24px;
+            position: relative;
+        }
+        .edu-node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        .edu-dot {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gold-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            box-shadow: 0 0 0 5px rgba(212, 175, 55, 0.15), 0 8px 18px rgba(212, 175, 55, 0.35);
+            flex-shrink: 0;
+        }
+        .edu-connector {
+            width: 4px;
+            flex: 1;
+            min-height: 40px;
+            background: repeating-linear-gradient(
+                to bottom,
+                var(--gold-primary) 0,
+                var(--gold-primary) 8px,
+                transparent 8px,
+                transparent 16px
+            );
+        }
+        .edu-link:last-child .edu-connector { display: none; }
+        .edu-content {
+            padding-bottom: 40px;
+        }
+        .edu-level {
+            color: #aa771c;
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .edu-school {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #333;
+            font-family: 'Sarabun', sans-serif;
+        }
+
+        @media (max-width: 600px) {
+            .card { padding: 35px 22px; }
+            .edu-dot { width: 42px; height: 42px; font-size: 1.15rem; }
+        }
     </style>
 </head>
 <body>
@@ -28,9 +109,41 @@
     </nav>
     <div class="card">
         <h1>🎓 ประวัติการศึกษา</h1>
-        <p>• <strong>มัธยมศึกษาตอนปลาย:</strong> แผนการเรียนห้องเรียนพิเศษวิทยาศาสตร์และคณิตศาสตร์ (Gifted Program)</p>
-        <p>• <strong>มัธยมศึกษาตอนต้น:</strong> โรงเรียนบ้านบึง"อุตสาหกรรมนุเคราะห์"</p>
-        <p>• <strong>ประถมศึกษา:</strong> โรงเรียนบุญประทีปวิทยาคาร </p>
+
+        <div class="edu-chain">
+            <div class="edu-link">
+                <div class="edu-node">
+                    <div class="edu-dot">🎓</div>
+                    <div class="edu-connector"></div>
+                </div>
+                <div class="edu-content">
+                    <div class="edu-level">มัธยมศึกษาตอนปลาย</div>
+                    <div class="edu-school">แผนการเรียนห้องเรียนพิเศษวิทยาศาสตร์และคณิตศาสตร์ (Gifted Program)</div>
+                </div>
+            </div>
+
+            <div class="edu-link">
+                <div class="edu-node">
+                    <div class="edu-dot">📘</div>
+                    <div class="edu-connector"></div>
+                </div>
+                <div class="edu-content">
+                    <div class="edu-level">มัธยมศึกษาตอนต้น</div>
+                    <div class="edu-school">โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"</div>
+                </div>
+            </div>
+
+            <div class="edu-link">
+                <div class="edu-node">
+                    <div class="edu-dot">✏️</div>
+                    <div class="edu-connector"></div>
+                </div>
+                <div class="edu-content">
+                    <div class="edu-level">ประถมศึกษา</div>
+                    <div class="edu-school">โรงเรียนบุญประทีปวิทยาคาร</div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
