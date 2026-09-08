@@ -19,6 +19,8 @@
 
         * { box-sizing: border-box; }
 
+        html { overflow-x: hidden; }
+
         body {
             background: radial-gradient(ellipse at top, #3a2812 0%, #1a1208 55%, #0d0904 100%);
             color: var(--text-dark);
@@ -34,6 +36,64 @@
             position: relative;
             overflow-x: hidden;
         }
+
+        /* ===== ผ้าม่านเปิดหน้าเว็บ ===== */
+        .curtain-wrap {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        .curtain {
+            position: fixed;
+            top: 0;
+            width: 52%;
+            height: 100%;
+            background:
+                repeating-linear-gradient(
+                    90deg,
+                    #3d0d0d 0px, #5a1414 18px, #7a1c1c 36px, #5a1414 54px, #3d0d0d 72px
+                );
+            box-shadow: inset 0 0 80px rgba(0,0,0,0.6), 0 0 60px rgba(0,0,0,0.7);
+            z-index: 9999;
+            transition: transform 1.6s cubic-bezier(0.77, 0, 0.18, 1);
+        }
+        .curtain::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(180deg, rgba(255,215,120,0.18), transparent 30%, transparent 70%, rgba(0,0,0,0.35));
+            pointer-events: none;
+        }
+        .curtain::after {
+            content: '';
+            position: absolute; bottom: 0; left: 0; right: 0; height: 90px;
+            background: linear-gradient(180deg, transparent, rgba(212,175,55,0.35));
+            border-top: 3px solid rgba(212,175,55,0.6);
+        }
+        .curtain-left { left: 0; transform: translateX(0); border-right: 2px solid rgba(212,175,55,0.5); }
+        .curtain-right { right: 0; transform: translateX(0); border-left: 2px solid rgba(212,175,55,0.5); }
+
+        body.curtain-open .curtain-left { transform: translateX(-101%); }
+        body.curtain-open .curtain-right { transform: translateX(101%); }
+
+        .curtain-crest {
+            position: fixed;
+            top: 44%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10000;
+            font-size: 3.4rem;
+            color: var(--gold-primary);
+            text-shadow: 0 0 25px rgba(212,175,55,0.8);
+            opacity: 1;
+            transition: opacity 0.6s ease 0.3s, transform 1s ease 0.3s;
+            pointer-events: none;
+        }
+        body.curtain-open .curtain-crest {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(1.4);
+        }
+        /* ==================================== */
 
         /* เวทีแสงสปอตไลท์แบบ Miss Universe */
         .stage-lights {
@@ -243,6 +303,12 @@
     </style>
 </head>
 <body>
+
+    <!-- ✦ ผ้าม่านเปิดหน้าเว็บ ✦ -->
+    <div class="curtain curtain-left"></div>
+    <div class="curtain curtain-right"></div>
+    <div class="curtain-crest">👑</div>
+
     <!-- เมนูบาร์ด้านบน -->
     <nav class="navbar">
         <a href="index.html" class="nav-link active">🏠 หน้าแรก</a>
@@ -312,6 +378,13 @@
             setTimeout(() => s.remove(), duration * 1000);
         }
         setInterval(createSparkle, 130);
+
+        // ✦ เปิดผ้าม่านหลังโหลดหน้าเสร็จ ✦
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.body.classList.add('curtain-open');
+            }, 500);
+        });
     </script>
 </body>
 </html>
