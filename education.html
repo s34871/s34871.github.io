@@ -14,11 +14,67 @@
             font-family: 'Cinzel', 'Playfair Display', sans-serif;
             margin: 0;
             min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
         }
 
         .navbar { position: fixed; top: 0; left: 0; width: 100%; background: rgba(255, 255, 255, 0.92); border-bottom: 1px solid rgba(212, 175, 55, 0.3); backdrop-filter: blur(10px); z-index: 1000; display: flex; justify-content: center; gap: 15px; padding: 15px 0; box-shadow: 0 5px 20px rgba(0,0,0,0.03); }
         .nav-link { color: #aa771c; text-decoration: none; font-weight: 700; font-size: 0.95rem; padding: 8px 16px; border-radius: 30px; transition: all 0.3s ease; }
         .nav-link:hover, .nav-link.active { background: var(--gold-gradient); color: white; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); }
+
+        /* ✦ แสงทองโปรยลงมา ✦ */
+        .gold-light-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .light-ray {
+            position: absolute;
+            top: -20%;
+            width: 140px;
+            height: 160%;
+            background: linear-gradient(180deg, rgba(212,175,55,0) 0%, rgba(251,245,183,0.35) 45%, rgba(212,175,55,0.12) 70%, rgba(212,175,55,0) 100%);
+            transform: rotate(18deg);
+            animation: rayDrift 9s ease-in-out infinite;
+            filter: blur(2px);
+        }
+        .light-ray:nth-child(1) { left: 8%;  animation-delay: 0s;   opacity: 0.6; }
+        .light-ray:nth-child(2) { left: 32%; animation-delay: 1.4s; opacity: 0.4; width: 100px; }
+        .light-ray:nth-child(3) { left: 58%; animation-delay: 2.8s; opacity: 0.55; }
+        .light-ray:nth-child(4) { left: 80%; animation-delay: 4.2s; opacity: 0.35; width: 90px; }
+
+        @keyframes rayDrift {
+            0%   { transform: translateY(-6%) rotate(18deg); opacity: 0; }
+            15%  { opacity: 0.7; }
+            50%  { transform: translateY(4%) rotate(18deg); }
+            85%  { opacity: 0.5; }
+            100% { transform: translateY(14%) rotate(18deg); opacity: 0; }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: var(--gold-primary);
+            border-radius: 50%;
+            box-shadow: 0 0 8px 2px rgba(212,175,55,0.7);
+            animation: sparkleFall linear infinite;
+        }
+        @keyframes sparkleFall {
+            0%   { transform: translateY(-40px) scale(0.6); opacity: 0; }
+            10%  { opacity: 1; }
+            90%  { opacity: 0.8; }
+            100% { transform: translateY(900px) scale(1); opacity: 0; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .light-ray, .sparkle { animation: none !important; }
+        }
 
         .card {
             background: var(--card-bg);
@@ -29,6 +85,8 @@
             margin: 0 auto;
             padding: 55px 70px;
             border: var(--border-gold);
+            position: relative;
+            z-index: 1;
         }
         h1 { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.1rem; font-weight: 700; margin-bottom: 40px; }
 
@@ -100,6 +158,19 @@
     </style>
 </head>
 <body>
+    <div class="gold-light-layer" aria-hidden="true">
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+        <div class="sparkle" style="left:12%; animation-duration:6s; animation-delay:0s;"></div>
+        <div class="sparkle" style="left:24%; animation-duration:7.5s; animation-delay:1.2s;"></div>
+        <div class="sparkle" style="left:38%; animation-duration:5.5s; animation-delay:2.1s;"></div>
+        <div class="sparkle" style="left:50%; animation-duration:8s; animation-delay:0.6s;"></div>
+        <div class="sparkle" style="left:63%; animation-duration:6.8s; animation-delay:3s;"></div>
+        <div class="sparkle" style="left:76%; animation-duration:7.2s; animation-delay:1.8s;"></div>
+        <div class="sparkle" style="left:88%; animation-duration:5.8s; animation-delay:2.6s;"></div>
+    </div>
     <nav class="navbar">
         <a href="index.html" class="nav-link">🏠 หน้าแรก</a>
         <a href="about.html" class="nav-link">👑 ประวัติส่วนตัว</a>
@@ -113,12 +184,12 @@
         <div class="edu-chain">
             <div class="edu-link">
                 <div class="edu-node">
-                    <div class="edu-dot">🎓</div>
+                    <div class="edu-dot">✏️</div>
                     <div class="edu-connector"></div>
                 </div>
                 <div class="edu-content">
-                    <div class="edu-level">มัธยมศึกษาตอนปลาย</div>
-                    <div class="edu-school">แผนการเรียนห้องเรียนพิเศษวิทยาศาสตร์และคณิตศาสตร์ (Gifted Program)</div>
+                    <div class="edu-level">ประถมศึกษา</div>
+                    <div class="edu-school">โรงเรียนบุญประทีปวิทยาคาร</div>
                 </div>
             </div>
 
@@ -135,12 +206,12 @@
 
             <div class="edu-link">
                 <div class="edu-node">
-                    <div class="edu-dot">✏️</div>
+                    <div class="edu-dot">🎓</div>
                     <div class="edu-connector"></div>
                 </div>
                 <div class="edu-content">
-                    <div class="edu-level">ประถมศึกษา</div>
-                    <div class="edu-school">โรงเรียนบุญประทีปวิทยาคาร</div>
+                    <div class="edu-level">มัธยมศึกษาตอนปลาย</div>
+                    <div class="edu-school">โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"(Gifted Program)</div>
                 </div>
             </div>
         </div>
