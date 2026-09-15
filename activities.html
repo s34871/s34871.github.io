@@ -128,7 +128,28 @@
             overflow: hidden;
             background-color: #f5f5f5;
             border: 1px solid #eee;
+            cursor: zoom-in;
+            position: relative;
         }
+        .img-container::after {
+            content: "🔍";
+            position: absolute;
+            right: 8px;
+            bottom: 8px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.45);
+            color: #fff;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            pointer-events: none;
+        }
+        .gallery-item:hover .img-container::after { opacity: 1; }
         .gallery-img {
             width: 100%;
             height: 100%;
@@ -144,6 +165,90 @@
             margin-top: 10px;
             font-weight: 600;
             text-align: center;
+        }
+
+        /* 🔍 Lightbox สำหรับดูรูปขนาดใหญ่ */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 8, 4, 0.88);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            cursor: zoom-out;
+            animation: lbFadeIn 0.25s ease;
+        }
+        .lightbox-overlay.open { display: flex; }
+        @keyframes lbFadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .lightbox-content {
+            position: relative;
+            max-width: min(92vw, 1000px);
+            max-height: 88vh;
+            cursor: default;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 76vh;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            border: 3px solid rgba(212,175,55,0.6);
+            background: #fff;
+        }
+        .lightbox-caption {
+            color: #fbf5b7;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 16px;
+            text-align: center;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: -18px;
+            right: -18px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: var(--gold-gradient);
+            color: #2a1e08;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255,255,255,0.15);
+            color: #fbf5b7;
+            font-size: 22px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+        }
+        .lightbox-nav:hover { background: rgba(255,255,255,0.3); }
+        .lightbox-nav.prev { left: -60px; }
+        .lightbox-nav.next { right: -60px; }
+
+        @media (max-width: 700px) {
+            .lightbox-nav.prev { left: 4px; }
+            .lightbox-nav.next { right: 4px; }
+            .lightbox-close { top: 4px; right: 4px; }
         }
 
         @media (max-width: 600px) {
@@ -193,7 +298,8 @@
 
         <!-- 📸 โซนแสดงรูปภาพกิจกรรม (เพิ่มเป็น 6 ช่อง) -->
         <h2>✦ แฟ้มภาพกิจกรรม (Activity Gallery)</h2>
-        <div class="gallery-grid">
+        <p style="text-align:center; font-size:0.9rem; color:#8a7a4a; margin-top:-6px;">👆 คลิกที่รูปเพื่อดูขนาดใหญ่</p>
+        <div class="gallery-grid" id="galleryGrid">
 
             <!-- รูปกิจกรรมที่ 1 -->
             <div class="gallery-item">
@@ -234,5 +340,70 @@
 
         </div>
     </div>
+
+    <!-- 🔍 Lightbox overlay สำหรับดูรูปขนาดใหญ่ -->
+    <div class="lightbox-overlay" id="lightboxOverlay">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <button class="lightbox-close" id="lightboxClose" aria-label="ปิด">&times;</button>
+            <button class="lightbox-nav prev" id="lightboxPrev" aria-label="รูปก่อนหน้า">&#8249;</button>
+            <img id="lightboxImg" src="" alt="">
+            <div class="lightbox-caption" id="lightboxCaption"></div>
+            <button class="lightbox-nav next" id="lightboxNext" aria-label="รูปถัดไป">&#8250;</button>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            var items = Array.prototype.slice.call(document.querySelectorAll('#galleryGrid .gallery-item'));
+            var overlay = document.getElementById('lightboxOverlay');
+            var lbImg = document.getElementById('lightboxImg');
+            var lbCaption = document.getElementById('lightboxCaption');
+            var closeBtn = document.getElementById('lightboxClose');
+            var prevBtn = document.getElementById('lightboxPrev');
+            var nextBtn = document.getElementById('lightboxNext');
+            var currentIndex = 0;
+
+            function dataFor(item) {
+                var img = item.querySelector('.gallery-img');
+                var cap = item.querySelector('.img-caption');
+                return { src: img ? img.getAttribute('src') : '', alt: img ? img.getAttribute('alt') : '', caption: cap ? cap.textContent.trim() : '' };
+            }
+
+            function openLightbox(index) {
+                if (!items.length) return;
+                currentIndex = (index + items.length) % items.length;
+                var data = dataFor(items[currentIndex]);
+                lbImg.src = data.src;
+                lbImg.alt = data.alt;
+                lbCaption.textContent = data.caption;
+                overlay.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLightbox() {
+                overlay.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+
+            items.forEach(function (item, index) {
+                var container = item.querySelector('.img-container');
+                if (container) {
+                    container.addEventListener('click', function () { openLightbox(index); });
+                }
+            });
+
+            closeBtn.addEventListener('click', closeLightbox);
+            overlay.addEventListener('click', closeLightbox);
+            prevBtn.addEventListener('click', function (e) { e.stopPropagation(); openLightbox(currentIndex - 1); });
+            nextBtn.addEventListener('click', function (e) { e.stopPropagation(); openLightbox(currentIndex + 1); });
+
+            document.addEventListener('keydown', function (e) {
+                if (!overlay.classList.contains('open')) return;
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') openLightbox(currentIndex - 1);
+                if (e.key === 'ArrowRight') openLightbox(currentIndex + 1);
+            });
+        })();
+    </script>
 </body>
 </html>
